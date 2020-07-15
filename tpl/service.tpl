@@ -1,0 +1,22 @@
+<?php
+/**
+ * Power by abnermouke2020/laravel-builder.
+ * User: {__AUTHOR__} <{__AUTHOR_CONTACT_EMAIL}>
+ * Originate in {__ORIGINATE__}
+ * Date: {__DATE__}
+ * Time: {__TIME__}
+*/
+
+namespace App\Services{__DICTIONARY__};
+
+use Abnermouke\LaravelBuilder\Module\BaseService;
+
+/**
+ * {__DATA_NAME__}逻辑服务容器
+ * Class {__LOWER_CASE_NAME__}Service
+ * @package App\Services{__DICTIONARY__}
+*/
+class {__LOWER_CASE_NAME__}Service extends BaseService
+{
+    //
+}

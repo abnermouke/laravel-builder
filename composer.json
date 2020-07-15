@@ -1,0 +1,18 @@
+{
+    "name": "abnermouke2020/laravel-builder",
+    "description": "cd",
+    "authors": [
+        {
+            "name": "Abnermouke",
+            "email": "abnermouke@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Abnermouke\\LaravelBuilder\\": "src"
+        }
+    },
+    "require": {
+        "ext-json": "*"
+    }
+}
