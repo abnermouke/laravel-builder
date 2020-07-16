@@ -75,6 +75,8 @@ means to build a `accounts` packages
 
 生成`accounts`相关的系列文件信息。
 
+更多精彩，敬请期待！
+
 
 
 ## License
