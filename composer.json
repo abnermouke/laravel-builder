@@ -1,6 +1,6 @@
 {
     "name": "abnermouke/laravel-builder",
-    "description": "Laravel Framework Controller、Service、Repository、Model、Handler、Controller Builder.",
+    "description": "Laravel Framework Controller、Service、Repository、Model、Handler Builder.",
     "authors": [
         {
             "name": "Abnermouke",
