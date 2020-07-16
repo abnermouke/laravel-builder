@@ -14,7 +14,7 @@
         }
     },
     "require": {
-        "laravel/laravel": "^6.0",
+        "laravel/laravel": ">=6.0",
         "ext-json": "*"
     }
 }
