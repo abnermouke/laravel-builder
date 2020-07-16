@@ -6,8 +6,9 @@
 
 ---
 
-📦 It is an efficient tool for developing Laravel Framework.
+It is an efficient tool for developing Laravel Framework.
 一款高效的Laravel框架开发工具
+
 
 
 ## Requirement - 依赖包
@@ -16,11 +17,15 @@
 2. **[Composer](https://getcomposer.org/)**
 3. Laravel Framework 6+
 
+
+
 ## Installation - 安装方法
 
 ```shell
 $ composer require "abnermouke/laravel-builder"
 ```
+
+
 ### How to use it - 怎么使用
 
 - Add the following class to the `providers` array in `config/app.php`:
@@ -49,6 +54,7 @@ $ composer require "abnermouke/laravel-builder"
     此构建工具提供一配置文件帮助开发者自行配置自己的构建配置，可通过命令`php artisan vendor:publish`并选择服务提供者 `Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider` 去生成自己的配置文件 `builder.php`。
 
 
+
 ### Usage - 使用
 
 Abnermouke provides an efficient development command for quickly building a framework
@@ -68,6 +74,8 @@ $ php artisan builder:package accounts
 means to build a `accounts` packages
 
 生成`accounts`相关的系列文件信息。
+
+
 
 ## License
 
