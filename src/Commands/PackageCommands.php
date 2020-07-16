@@ -85,7 +85,7 @@ class PackageCommands extends Command
             //提示设置数据库前缀
             $this->tplParams['__DB_PREFIX__'] = $dbPrefix = (string)$this->output->ask('检测到并未设置数据库表前缀，如数据库表存在统一前缀，请输入前缀，例如：system_');
             //初始化数据库前缀信息
-            $this->tplParams['__DB_PREFIX__'] = Str::finish($dbPrefix, '_');
+            !empty($dbPrefix) && $this->tplParams['__DB_PREFIX__'] = Str::finish($dbPrefix, '_');
         }
         //整理驼峰名称
         $this->tplParams['__CASE_NAME__'] = $this->tplParams['__MIGRATION_CASE_NAME_'] = $caseName = Str::studly($name);
