@@ -50,7 +50,7 @@ class BaseRepository
     /**
      * set current model connection
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:22:59
      * @param null $connection current model connection
      * @return $this
@@ -69,7 +69,7 @@ class BaseRepository
     /**
      * set current model sql query debug
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:23:50
      * @param bool $debug current model sql query debug
      * @return $this
@@ -86,7 +86,7 @@ class BaseRepository
     /**
      * set current model object and table name
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:24:41
      * @param $table_name string current model table
      * @return $this
@@ -108,7 +108,7 @@ class BaseRepository
     /**
      * run a custom sql
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:25:52
      * @param $sql string custom sql
      * @param null $connection current model connection
@@ -124,7 +124,7 @@ class BaseRepository
     /**
      * 转义判断值，防止SQL注入
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:30:41
      * @param $value string 储存内容
      * @return string
@@ -139,7 +139,7 @@ class BaseRepository
     /**
      * 设置处理数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:31:53
      * @param $data array 处理数据
      * @return mixed
@@ -160,7 +160,7 @@ class BaseRepository
     /**
      * 设置查询字段
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:33:49
      * @param array $fields
      * @return array|false|string[]
@@ -175,7 +175,7 @@ class BaseRepository
     /**
      * 设置查询条件
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:03:56
      * @param $query mixed 请求实例
      * @param array $conditions 查询条件
@@ -361,7 +361,7 @@ class BaseRepository
     /**
      * 设置group规则
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:05:50
      * @param $query
      * @param string $group
@@ -382,7 +382,7 @@ class BaseRepository
     /**
      * 设置链接规则
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:51:01
      * @param $query mixed 请求实例
      * @param array $joins 链接方式
@@ -431,7 +431,7 @@ class BaseRepository
     /**
      * 设置排序信息
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:44:27
      * @param $query mixed 请求实例
      * @param array $orders 排序规则
@@ -478,7 +478,7 @@ class BaseRepository
     /**
      * 初始化结果集
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:42:41
      * @param $query_result mixed 结果集
      * @return mixed
@@ -496,7 +496,7 @@ class BaseRepository
     /**
      * 生成唯一md5编码
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:33:05
      * @param string $secret 加密串
      * @param string $field 对比字段
@@ -519,7 +519,7 @@ class BaseRepository
     /**
      * 获取列表（详细列表数据）
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:34:08
      * @param $conditions array 筛选条件
      * @param array $fields 查询字段
@@ -548,7 +548,7 @@ class BaseRepository
     /**
      * 获取一条信息
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:21:48
      * @param array $conditions 查询条件
      * @param string[] $fields 查询字段
@@ -571,7 +571,7 @@ class BaseRepository
     /**
      * 获取某个字段信息
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:23:08
      * @param $conditions array 筛选条件
      * @param $field string 获取字段
@@ -591,7 +591,7 @@ class BaseRepository
     /**
      * 返回单独某字段的值集合
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:24:16
      * @param $field string 获取字段
      * @param array $conditions 筛选条件
@@ -611,7 +611,7 @@ class BaseRepository
     /**
      * 获取全部数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:26:20
      * @param array $conditions 筛选条件
      * @param array $fields 查询字段
@@ -640,7 +640,7 @@ class BaseRepository
     /**
      * 获取限制条数数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:27:35
      * @param array $conditions 筛选条件
      * @param array $fields 查询字段
@@ -671,7 +671,7 @@ class BaseRepository
     /**
      * 创建数据并返回自增ID
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:28:14
      * @param $data array 处理数据
      * @return mixed
@@ -688,7 +688,7 @@ class BaseRepository
     /**
      * 批量导入数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:28:53
      * @param $data array 处理数据
      * @param int $chunk 分割数据条数
@@ -732,7 +732,7 @@ class BaseRepository
     /**
      * 更新数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:29:44
      * @param $conditions array 筛选条件
      * @param $data array 更新数据集
@@ -752,7 +752,7 @@ class BaseRepository
     /**
      * 删除数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:30:06
      * @param $conditions array 筛选条件
      * @return mixed
@@ -769,7 +769,7 @@ class BaseRepository
     /**
      * 清空表数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:30:27
      * @return mixed
      * @throws \Exception
@@ -783,7 +783,7 @@ class BaseRepository
     /**
      * 更新或新增数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:30:52
      * @param $condition array 判断数据是否存在的条件
      * @param $data array 需要新增/更新的数据
@@ -803,7 +803,7 @@ class BaseRepository
     /**
      * 自增字段数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-15 17:31:19
      * @param $field string 自增数据名
      * @param array $conditions 查询条件
@@ -822,7 +822,7 @@ class BaseRepository
     /**
      * 自减字段数据
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 16:32:16
      * @param $field string 自增数据名
      * @param array $conditions 查询条件
@@ -841,7 +841,7 @@ class BaseRepository
     /**
      * 聚合查询总数量
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:00:52
      * @param array $conditions 查询条件
      * @return mixed
@@ -858,7 +858,7 @@ class BaseRepository
     /**
      * 获取某字段最大值
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:02:05
      * @param $field string 获取指定字段名称
      * @param array $conditions 查询条件
@@ -876,7 +876,7 @@ class BaseRepository
     /**
      * 获取某字段最小值
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:02:05
      * @param $field string 获取指定字段名称
      * @param array $conditions 查询条件
@@ -894,7 +894,7 @@ class BaseRepository
     /**
      * 获取某字段平均值
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:02:05
      * @param $field string 获取指定字段名称
      * @param array $conditions 查询条件
@@ -912,7 +912,7 @@ class BaseRepository
     /**
      * 获取某字段和
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:02:05
      * @param $field string 获取指定字段名称
      * @param array $conditions 查询条件
@@ -930,7 +930,7 @@ class BaseRepository
     /**
      * 判断查询条件对应的数据是否存在
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:04:31
      * @param array $conditions 查询条件
      * @return mixed
@@ -947,7 +947,7 @@ class BaseRepository
     /**
      * 判断查询条件对应的数据是否不存在
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:04:31
      * @param array $conditions 查询条件
      * @return mixed
@@ -964,7 +964,7 @@ class BaseRepository
     /**
      * 设置自增ID
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2019-12-09 15:01:09
      * @param int $auto_increment 自增ID值
      * @return bool

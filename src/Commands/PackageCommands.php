@@ -53,6 +53,11 @@ class PackageCommands extends Command
         '__DICTIONARY__' => ''
     ];
 
+    /**
+     * Laravel Builder to package Construct
+     * PackageCommands constructor.
+     * @param $config
+     */
     public function __construct($config)
     {
         //引入父级构造
@@ -72,6 +77,13 @@ class PackageCommands extends Command
         $this->tplParams = array_merge($this->tplParams, $default_params);
     }
 
+    /**
+     * Laravel Builder to package
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-07-16 11:34:24
+     * @throws \Exception
+     */
     public function handle()
     {
         //获取生成文件包统一名称

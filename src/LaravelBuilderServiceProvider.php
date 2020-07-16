@@ -30,7 +30,12 @@ class LaravelBuilderServiceProvider extends ServiceProvider
     public function boot()
     {
         // 发布配置文件
-        $this->publishes([__DIR__.'/../config/builder.php' => config_path('builder.php')]);
+        $this->publishes([
+            __DIR__.'/../config/builder.php' => config_path('builder.php'),
+            __DIR__.'/../helpers/functions.php' => app_path('Helpers/functions.php'),
+            __DIR__.'/../helpers/helpers.php' => app_path('Helpers/helpers.php'),
+            __DIR__.'/../helpers/response.php' => app_path('Helpers/response.php'),
+        ]);
         // 注册配置
         $this->commands('command.builder.package');
     }

@@ -51,7 +51,7 @@ $ composer require "abnermouke/laravel-builder"
 
 - This builder tool provides a config file to help you custom your build configs, you can use command `php artisan vendor:publish` and choose `providers` names `Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider` to generate a `builder.php` config file for your own.
 
-    此构建工具提供一配置文件帮助开发者自行配置自己的构建配置，可通过命令`php artisan vendor:publish`并选择服务提供者 `Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider` 去生成自己的配置文件 `builder.php`。
+    此构建工具提供一配置文件帮助开发者自行配置自己的构建配置，通过命令`php artisan vendor:publish`并选择服务提供者 `Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider` 去生成自己的配置文件 `builder.php`。
 
 
 
@@ -82,4 +82,3 @@ means to build a `accounts` packages
 ## License
 
 MIT
-

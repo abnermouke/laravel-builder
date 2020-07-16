@@ -4,7 +4,7 @@ return [
 
     /*
    |--------------------------------------------------------------------------
-   | Database default setting and Cache setting
+   | Database default setting and Basic setting
    |--------------------------------------------------------------------------
    |
    | The default database settings
@@ -18,6 +18,10 @@ return [
 
     'cache_driver' => 'file',
 
+    'logic_request_log_time' => 0,
+
+    'app_version' => env('APP_VERSION', rand(10000, 99999)),
+
 
     /*
    |--------------------------------------------------------------------------
@@ -30,7 +34,7 @@ return [
 
     'author' => 'Abnermouke',
     'author_email' => 'abnermouke@gmail.com',
-    'original' => 'Yunni Technology Co Ltd.'
+    'original' => 'Yunni Technology Co Ltd.',
 
 
 ];
