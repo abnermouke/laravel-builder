@@ -18,5 +18,13 @@ use Abnermouke\LaravelBuilder\Module\BaseService;
 */
 class {__LOWER_CASE_NAME__}Service extends BaseService
 {
+
+    /**
+    * 引入父级构造
+    * {__LOWER_CASE_NAME__}Service constructor.
+    * @param bool $pass 是否直接获取结果
+    */
+    public function __construct($pass = false) { parent::__construct($pass); }
+
     //
 }

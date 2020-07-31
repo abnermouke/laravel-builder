@@ -137,6 +137,21 @@ class BaseRepository
     }
 
     /**
+     * 反转义系统值，避免错误
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-07-31 14:37:31
+     * @param $value
+     * @return string
+     * @throws \Exception
+     */
+    private function stripslashesValue($value)
+    {
+        //判断类型
+        return $value && !empty($value) && is_string($value) ? stripslashes($value) : $value;
+    }
+
+    /**
      * 设置处理数据
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
@@ -486,11 +501,16 @@ class BaseRepository
      */
     private function setResult($query_result)
     {
-
-        //TODO : 结果集统一进行处理后返回
-
+        //初始化返回数据
+        $query_result = $query_result && !empty($query_result) && is_object($query_result) ? json_decode($query_result, true) : $query_result;
+        //循环数据
+        foreach ($query_result as $field => $value)
+        {
+            //初始化数据信息
+            $query_result[$field] = $this->stripslashesValue((is_null($value) ? '' : $value));
+        }
         //继续返回
-        return $query_result && !empty($query_result) && is_object($query_result) ? json_decode($query_result, true) : $query_result;
+        return $query_result;
     }
 
     /**

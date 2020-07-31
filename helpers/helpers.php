@@ -17,10 +17,10 @@ if (!function_exists('proxy_assets')) {
      * @return string
      * @throws \Exception
      */
-    function proxy_assets($path, $module = 'console', $version = false)
+    function proxy_assets($path, $module = '', $version = false)
     {
         //整理地址对应目录
-        $path = config('app.url').'/'.$module.DIRECTORY_SEPARATOR.$path;
+        $path = config('app.url').'/'.($module && !empty($module) ? ($module.'/') : '').$path;
         //判断是否使用第三方存储资源文件
         switch (config('app.env', 'local')) {
             case 'production':
@@ -96,5 +96,94 @@ if (!function_exists('seconds_to_time_string')) {
         $second = floor((($seconds-3600 * $hour) - 60 * $minute) % 60);
         //整理信息
         return ($hour < 10 ? '0'.$hour : $hour).':'.($minute < 10 ? '0'.$minute : $minute).':'.($second < 10 ? '0'.$second : $second);
+    }
+}
+
+
+if (!function_exists('init_range_conditions')) {
+    /**
+     * 初始化范围筛选条件
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-05-13 16:57:17
+     * @param $conditions array 当前条件
+     * @param $field string 处理字段
+     * @param bool $min 最小值
+     * @param bool $max 最大值
+     * @return mixed
+     * @throws \Exception
+     */
+    function init_range_conditions($conditions, $field, $min = false, $max = false)
+    {
+        //判断信息
+        if ($min && $max) {
+            //设置区间
+            $conditions[$field] = ['between', [$min, $max]];
+        } elseif ($min) {
+            //设置最小
+            $conditions[$field] = ['>=', $min];
+        } elseif ($max) {
+            //设置最大
+            $conditions[$field] = ['<=', $max];
+        }
+        //返回筛选条件
+        return $conditions;
+    }
+}
+
+if (!function_exists('create_qiniu_image_size')) {
+    /**
+     * 创建七牛图片大小参数信息
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-07-27 10:49:16
+     * @param $size mixed 大小参数信息
+     * @param string $version 图像处理引擎/版本
+     * @param int $type 裁剪方案
+     * @return string
+     * @throws \Exception
+     */
+    function create_qiniu_image_size($size, $version = 'imageView2', $type = 2) {
+        //判断尺寸信息
+        if ($size && !empty($size)) {
+            //拆分尺寸信息
+            $size = explode('x', $size);
+            //获取宽高信息
+            $width = (int)head($size);
+            $height = (int)\Illuminate\Support\Arr::last($size);
+            //整理参数信息
+            $prefix = '?'.$version.'/'.(int)$type.'/w/'.(int)$width.'/h/'.(int)$height;
+        } else {
+            //设置空白参数
+            $prefix = '';
+        }
+        //返回参数
+        return $prefix;
+    }
+}
+
+if (!function_exists('auto_locale_field')) {
+    /**
+     * 根据当前语言获取字段名
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-07-28 09:49:52
+     * @param $field string 字段名
+     * @param bool $locale 使用语言
+     * @param bool $as 是否别名返回
+     * @return string
+     * @throws \Exception
+     */
+    function auto_locale_field($field, $locale = false, $as = true)
+    {
+        //整理设置语言信息
+        $locale = !$locale || !in_array(strtolower($locale), ['zh-cn', 'en']) ? config('app.locale') : strtolower($locale);
+        //设置字段信息
+        if (strtolower($locale) !== 'zh-cn') {
+            //设置字段信息
+            $field .= $as ? ('_'.$locale.' as '.$field) : ('_'.$locale);
+        }
+        //返回字段信息
+        return $field;
     }
 }

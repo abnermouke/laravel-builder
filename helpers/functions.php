@@ -11,8 +11,8 @@ if (!function_exists('getRandChar')) {
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:22:45
-     * @param int $length
-     * @param bool $int
+     * @param int $length 获取长度
+     * @param bool $int 是否纯数字
      * @return false|string
      * @throws \Exception
      */
@@ -42,7 +42,7 @@ if (!function_exists('filter_emoji')) {
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:22:54
-     * @param $str
+     * @param $str string 过滤信息
      * @return mixed
      * @throws \Exception
      */
@@ -61,9 +61,9 @@ if (!function_exists('arraySequence')) {
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:25:05
-     * @param $array
-     * @param $field
-     * @param string $sort
+     * @param $array array 二维数组信息
+     * @param $field string 排序字段
+     * @param string $sort 排序规则
      * @return mixed
      * @throws \Exception
      */
@@ -86,7 +86,7 @@ if (!function_exists('to_time')) {
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:28:03
-     * @param $time
+     * @param $time mixed 是啊见信息
      * @param bool $default
      * @return bool|int
      * @throws \Exception
@@ -107,10 +107,10 @@ if (!function_exists('friendly_time')) {
      * 友好的时间提示
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
-     * @Time 2020-06-22 14:49:51
-     * @param $time
-     * @param string $type
-     * @return array|false|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null
+     * @Time 2020-07-31 14:45:55
+     * @param $time mixed 时间信息
+     * @param string $type 返回类型
+     * @return bool|false|int|string
      * @throws \Exception
      */
     function friendly_time($time, $type = 'normal') {
@@ -134,17 +134,17 @@ if (!function_exists('friendly_time')) {
                     //判断时间小于10秒
                     if ($dTime < 10) {
                         //设置时间字符串
-                        $timeString = trans('currency.just_now');
+                        $timeString = '刚刚';
                     } else {
                         //设置时间字符串
-                        $timeString = trans('currency.seconds_ago', ['second' => (int)(floor($dTime / 10) * 10)]);
+                        $timeString = (int)(floor($dTime / 10) * 10).'秒前';
                     }
                 } elseif ((int)$dTime < 3600) {
                     //设置时间字符串
-                    $timeString = trans('currency.minutes_ago', ['minute' => (int)($dTime / 60)]);
+                    $timeString = (int)($dTime / 60).'分钟前';
                 } elseif ($dYear === 0 && date('d', $time) === date('d') && date('m', $time) === date('m')) {
                     //设置时间字符串
-                    $timeString = trans('currency.hours_ago', ['hour' => (int)($dTime / 3600)]);
+                    $timeString = (int)($dTime / 3600).'小时前';
                 } elseif ((int)$dYear === 0) {
                     //设置时间字符串
                     $timeString = date('m-d', $time);
@@ -159,17 +159,17 @@ if (!function_exists('friendly_time')) {
                     //判断时间小于10秒
                     if ($dTime < 10) {
                         //设置时间字符串
-                        $timeString = trans('currency.just_now');
+                        $timeString = '刚刚';
                     } else {
                         //设置时间字符串
-                        $timeString = trans('currency.seconds_ago', ['second' => (int)(floor($dTime / 10) * 10)]);
+                        $timeString = (int)(floor($dTime / 10) * 10).'秒前';
                     }
                 } elseif ((int)$dTime < 3600) {
                     //设置时间字符串
-                    $timeString = trans('currency.minutes_ago', ['minute' => (int)($dTime / 60)]);
+                    $timeString = (int)($dTime / 60).'分钟前';
                 } elseif ($dYear === 0 && date('d', $time) === date('d')) {
                     //设置时间字符串
-                    $timeString = trans('currency.hours_ago', ['hour' => (int)($dTime / 3600)]);
+                    $timeString = (int)($dTime / 3600).'小时前';
                 } elseif ((int)$dYear === 0) {
                     //设置时间字符串
                     $timeString = date('m-d', $time);
@@ -185,22 +185,22 @@ if (!function_exists('friendly_time')) {
             case 'blurry':
                 if ((int)$dTime < 60) {
                     //设置时间字符串
-                    $timeString = trans('currency.seconds_ago', ['second' => $dTime]);
+                    $timeString = $dTime.'秒前';
                 } elseif ((int)$dTime < 3600) {
                     //设置时间字符串
-                    $timeString = trans('currency.minutes_ago', ['minute' => (int)($dTime / 60)]);
+                    $timeString = (int)($dTime / 60).'分钟前';
                 } elseif ((int)$dTime >= 3600 && (int)$dDay === 0) {
                     //设置时间字符串
-                    $timeString = trans('currency.hours_ago', ['hour' => (int)$dDay]);
+                    $timeString = (int)$dDay.'小时前';
                 } elseif ((int)$dDay > 0 && (int)$dDay <= 7) {
                     //设置时间字符串
-                    $timeString = trans('currency.days_ago', ['day' => (int)$dDay]);
+                    $timeString = (int)$dDay.'天前';
                 } elseif ((int)$dDay > 7 && (int)$dDay <= 30) {
                     //设置时间字符串
-                    $timeString = trans('currency.weeks_ago', ['week' => (int)$dDay/7]);
+                    $timeString = (int)($dDay/7).'周前';
                 } elseif ((int)$dDay > 30) {
                     //设置时间字符串
-                    $timeString = trans('currency.months_ago', ['month' => (int)$dDay/30]);
+                    $timeString = (int)($dDay/30).'月前';
                 }
                 break;
             default:

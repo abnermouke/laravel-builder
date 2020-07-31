@@ -15,7 +15,7 @@ class BaseModel extends Model
     protected $guarded = [];
 
     // Laravel builder basic model automatic update timestamp
-    public $timestamps = true;
+    public $timestamps = false;
 
     // Laravel builder basic model order sort [desc]
     public const LATEST_ORDER_BY = 'latest()';
