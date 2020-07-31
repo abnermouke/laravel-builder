@@ -503,11 +503,14 @@ class BaseRepository
     {
         //初始化返回数据
         $query_result = $query_result && !empty($query_result) && is_object($query_result) ? json_decode($query_result, true) : $query_result;
-        //循环数据
-        foreach ($query_result as $field => $value)
-        {
-            //初始化数据信息
-            $query_result[$field] = $this->stripslashesValue((is_null($value) ? '' : $value));
+        //判断数据信息
+        if ($query_result && !empty($query_result) && is_array($query_result)) {
+            //循环数据
+            foreach ($query_result as $field => $value)
+            {
+                //初始化数据信息
+                $query_result[$field] = $this->stripslashesValue((is_null($value) ? '' : $value));
+            }
         }
         //继续返回
         return $query_result;
