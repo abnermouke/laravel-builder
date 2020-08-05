@@ -149,7 +149,7 @@ class BaseService
     protected function fail($code = CodeLibrary::CODE_ERROR, $message = '', $extra = [])
     {
         //设置处理状态
-        $this->state = true;
+        $this->state = false;
         //设置处理编码
         $this->code = (int)($code);
         //设置提示信息
