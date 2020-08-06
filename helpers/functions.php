@@ -211,4 +211,29 @@ if (!function_exists('friendly_time')) {
         //返回时间字符串
         return $timeString;
     }
+
+    if (!function_exists('friendly_number')) {
+        /**
+         * 友好的数值提示
+         * @Author Abnermouke <abnermouke@gmail.com>
+         * @Originate in Company <Macbook Pro>
+         * @Time 2020-08-06 10:21:12
+         * @param $number int 数值
+         * @return string
+         * @throws \Exception
+         */
+        function friendly_number($number)
+        {
+            //判断长度
+            if ((int)$number >= 10000) {
+                //获取倍数
+                $number = round($number / 10000 * 100) / 100 . 'w+';
+            } elseif ($number >= 1000) {
+                //获取倍数
+                $number = round($number / 1000 * 100) / 100 . 'k+';
+            }
+            //返回数值
+            return $number;
+        }
+    }
 }

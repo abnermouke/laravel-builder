@@ -116,14 +116,14 @@ class PackageCommands extends Command
         //生成数据仓库
         $this->makeRepository();
         //询问是否生成迁移文件Migration
-        if ($this->confirm('是否生成数据迁移（Migration）文件？', true)) {
+        if ($this->confirm('是否生成数据迁移（Migration）文件？', config('builder.default_builder.migration', true))) {
             //生成migration
             $this->makeMigration();
         }
         //生成服务容器
         $this->makeService();
         //询问是否生成数据缓存
-        if ($this->confirm('是否生成数据缓存文件？', true)) {
+        if ($this->confirm('是否生成数据缓存文件？', config('builder.default_builder.data_cache', true))) {
             //设置基础缓存名
             $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary && !empty($dictionary) ? strtolower($dictionary).'_' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower($dictionary).'_' : '').$name.'_data_cache'));
             //设置缓存过期时间，随机1小时-一天
@@ -132,7 +132,7 @@ class PackageCommands extends Command
             $this->makeDataCache();
         }
         //询问是否生成控制器
-        if ($this->confirm('是否生成控制器文件？', true)) {
+        if ($this->confirm('是否生成控制器文件？', config('builder.default_builder.controller', true))) {
             //生成控制器文件
             $this->makeController();
         }

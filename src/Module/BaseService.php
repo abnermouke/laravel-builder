@@ -42,6 +42,23 @@ class BaseService
     }
 
     /**
+     * Laravel builder base service set return a logic result strict
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-08-06 11:04:16
+     * @param bool $pass
+     * @return $this
+     * @throws \Exception
+     */
+    public function pass($pass = false)
+    {
+        //设置是否直接返回
+        $this->pass = (bool)$pass;
+        //返回当前实例
+        return $this;
+    }
+
+    /**
      * Laravel builder base service return a logic result
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.

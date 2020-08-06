@@ -27,6 +27,13 @@ return [
 
     'app_version' => env('APP_VERSION', rand(10000, 99999)),
 
+    // Default builder packages
+    'default_builder' => [
+        'migration' => false,           //default build migration
+        'data_cache' => true,           //default build data cache handler
+        'controller' => false,          //default build controller
+    ],
+
 
     /*
    |--------------------------------------------------------------------------

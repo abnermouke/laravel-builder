@@ -138,12 +138,12 @@ if (!function_exists('create_qiniu_image_size')) {
      * @Originate in Company <Macbook Pro>
      * @Time 2020-07-27 10:49:16
      * @param $size mixed 大小参数信息
-     * @param string $version 图像处理引擎/版本
      * @param int $type 裁剪方案
+     * @param string $version 图像处理引擎/版本
      * @return string
      * @throws \Exception
      */
-    function create_qiniu_image_size($size, $version = 'imageView2', $type = 2) {
+    function create_qiniu_image_size($size, $type = 2, $version = 'imageView2') {
         //判断尺寸信息
         if ($size && !empty($size)) {
             //拆分尺寸信息
