@@ -2,7 +2,7 @@
 
  Power By Abnermouke <abnermouke@gmail.com>
 
- 此工具包由Abnermouke<abnermouke@gmail.com>开发并维护。
+ 此工具包由Abnermouke <abnermouke@gmail.com>开发并维护。
 
 ---
 

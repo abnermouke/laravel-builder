@@ -216,7 +216,7 @@ if (!function_exists('friendly_time')) {
         /**
          * 友好的数值提示
          * @Author Abnermouke <abnermouke@gmail.com>
-         * @Originate in Company <Macbook Pro>
+         * @Originate in Company Yunnitec.
          * @Time 2020-08-06 10:21:12
          * @param $number int 数值
          * @return string
@@ -235,5 +235,23 @@ if (!function_exists('friendly_time')) {
             //返回数值
             return $number;
         }
+    }
+}
+
+if (!function_exists('encodeURIComponent')) {
+    /**
+     * url特殊字符处理
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-08-06 11:36:28
+     * @param $str string 处理字符串
+     * @return string
+     * @throws \Exception
+     */
+    function encodeURIComponent($str) {
+        //初始化默认字段
+        $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+        //处理信息
+        return strtr(rawurlencode($str), $revert);
     }
 }
