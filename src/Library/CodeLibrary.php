@@ -91,5 +91,7 @@ class CodeLibrary
     public const FILE_CAN_NOT_BE_WRITE = 905;
     //文件无操作权限
     public const FILE_WITHOUT_PERMISSION = 906;
+    //文件资源不存在
+    public const FILE_RESOURCE_UNDEFINED = 907;
 
 }

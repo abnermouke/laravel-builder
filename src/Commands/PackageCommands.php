@@ -187,8 +187,15 @@ class PackageCommands extends Command
             $migrationPath = $migrationDictionaryPath = database_path('migrations/'.$migrationName.'.php');
             //判断是否存在目录信息
             if ($this->tplParams['__DICTIONARY__'] && !empty($this->tplParams['__DICTIONARY__'])) {
+                //整理目录
+                $migrationDictionary = database_path('migrations/'.strtolower(str_replace('\\', '/', $this->tplParams['__DICTIONARY__'])));
+                //判断目录是否存在
+                if (!File::isDirectory($migrationDictionary)) {
+                    //创建目录
+                    File::makeDirectory($migrationDictionary, 0777, true, true);
+                }
                 //整理目录地址
-                $migrationDictionaryPath = database_path('migrations/'.strtolower($this->tplParams['__DICTIONARY__']).'/'.$migrationName.'.php');
+                $migrationDictionaryPath = database_path('migrations/'.strtolower(str_replace('\\', '/', $this->tplParams['__DICTIONARY__'])).'/'.$migrationName.'.php');
             }
             //设置内容
             $this->putContent($migrationDictionaryPath, $content);
