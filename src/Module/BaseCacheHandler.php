@@ -39,6 +39,8 @@ class BaseCacheHandler extends BaseHandler
         $this->expire_seconds = (int)$expire_seconds;
         //init cache driver
         $this->driver = $driver && !empty($driver) ? $driver : config('cache.default');
+        //init read cache
+        $this->read();
     }
 
     /**
