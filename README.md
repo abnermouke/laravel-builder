@@ -81,7 +81,9 @@ means to build a `accounts` packages
 
 更多精彩，敬请期待！
 
-
+## GIT Remark
+git tag -d [tag]
+git push origin :refs/tags/[tag]
 
 ## License
 
