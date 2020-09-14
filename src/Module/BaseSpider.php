@@ -28,10 +28,11 @@ class BaseSpider
      * @param array $form_params 请求参数
      * @param string $method 请求方式
      * @param bool $decode 是否反JSON返回结果
+     * @param int $timeout 超时时间（0为不限制，>0单位：s）
      * @return bool
      * @throws \Exception
      */
-    protected function query($link, $form_params = [], $method = 'POST', $decode = true)
+    protected function query($link, $form_params = [], $method = 'POST', $decode = true, $timeout = 1000)
     {
         //实例化请求
         $client = new Client();
@@ -47,7 +48,7 @@ class BaseSpider
                 $link = $request_link;
             }
             //整理信息
-            $options = ['timeout' => 1000, 'verify' => false];
+            $options = ['timeout' => (int)$timeout, 'verify' => false];
             //判断是否存在参数
             if ($form_params && !empty($form_params)) {
                 //设置参数
