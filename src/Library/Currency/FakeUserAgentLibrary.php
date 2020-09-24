@@ -30,6 +30,76 @@ class FakeUserAgentLibrary
     }
 
     /**
+     * 指定Chrome访问UA
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 15:10:45
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    public static function chrome()
+    {
+        //指定 Chrome UA
+        return self::browser('chrome', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36');
+    }
+
+    /**
+     * 指定Opera访问UA
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 15:13:06
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    public static function opera()
+    {
+        //指定 Opera UA
+        return self::browser('opera', 'Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16');
+    }
+
+    /**
+     * 指定Firefox访问UA
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 15:13:09
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    public static function firefox()
+    {
+        //指定 Firefox UA
+        return self::browser('firefox', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1');
+    }
+
+    /**
+     * 指定Internetexplorer访问UA
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 15:13:13
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    public static function internetexplorer()
+    {
+        //指定 Internetexplorer UA
+        return self::browser('internetexplorer', 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko');
+    }
+
+    /**
+     * 指定Safari访问UA
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 15:13:17
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    public static function safari()
+    {
+        //指定 Safari UA
+        return self::browser('safari', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A');
+    }
+
+    /**
      * 获取指定浏览器UA
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company <Macbook Pro>
@@ -39,7 +109,7 @@ class FakeUserAgentLibrary
      * @return array|mixed|string
      * @throws \Exception
      */
-    public static function browser($browser = 'chrome', $default = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
+    protected static function browser($browser = 'chrome', $default = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
     {
         //获取UA信息
         $userAgents = self::getFakeUserAgent();
