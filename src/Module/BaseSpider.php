@@ -3,6 +3,7 @@
 namespace Abnermouke\LaravelBuilder\Module;
 
 use Abnermouke\LaravelBuilder\Library\CodeLibrary;
+use Abnermouke\LaravelBuilder\Library\Currency\FakeUserAgentLibrary;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -29,10 +30,12 @@ class BaseSpider
      * @param string $method 请求方式
      * @param bool $decode 是否反JSON返回结果
      * @param int $timeout 超时时间（0为不限制，>0单位：s）
+     * @param array|bool $headers 访问由信息
+     * @param array|bool $ops 自定义请求配置
      * @return bool
      * @throws \Exception
      */
-    protected function query($link, $form_params = [], $method = 'POST', $decode = true, $timeout = 1000)
+    protected function query($link, $form_params = [], $method = 'POST', $decode = true, $timeout = 1000, $headers = false, $ops = false)
     {
         //实例化请求
         $client = new Client();
@@ -48,12 +51,14 @@ class BaseSpider
                 $link = $request_link;
             }
             //整理信息
-            $options = ['timeout' => (int)$timeout, 'verify' => false];
+            $options = ['timeout' => (int)$timeout, 'verify' => false, 'headers' => $this->initRequestHeaders($headers)];
             //判断是否存在参数
-            if ($form_params && !empty($form_params)) {
+            if ($form_params) {
                 //设置参数
                 $options['form_params'] = $form_params;
             }
+            //判断是否存在自定义请求配置
+            $ops && $options = array_merge($options, $ops);
             //发起请求
             $response = $client->request(strtoupper($method), $link, $options);
             //判断是否请求成功
@@ -77,6 +82,38 @@ class BaseSpider
         }
         //返回处理结果
         return $this->success($result);
+    }
+
+    /**
+     * 初始化访问头信息
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-24 14:13:30
+     * @param false|array $headers 自定义头信息
+     * @return array|false
+     * @throws \Exception
+     */
+    private function initRequestHeaders($headers = false)
+    {
+        //初始化默认headers
+        $default_headers = [
+            'User-Agent' => FakeUserAgentLibrary::random(),
+            'Cache-Control' => 'no-cache',
+            'Connection' => 'keep-alive',
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip, deflate, br',
+            'Referer' => '',
+        ];
+        //判断数据
+        if ($headers) {
+            //重置信息
+            $headers = array_merge($default_headers, $headers);
+        } else {
+            //设置头信息
+            $headers = $default_headers;
+        }
+        //返回headers
+        return $headers;
     }
 
     /**
