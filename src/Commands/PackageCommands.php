@@ -142,6 +142,49 @@ class PackageCommands extends Command
     }
 
     /**
+     * 检查维护迁移文件是否存在
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-10-09 23:52:26
+     * @return bool
+     */
+    private function checkFillingMigration()
+    {
+        //初始化目录
+        $dir_path = database_path('migrations/fillings');
+        //判断是否存在目录
+        if (!File::exists($dir_path)) {
+            try {
+                //执行命令
+                Artisan::call('make:migration', ['name' => 'create_fillings_table']);
+            } catch (\Exception $exception) {
+                //输出错误
+                $this->output->warning($exception->getMessage());
+            }
+            //获取执行结果
+            $output = Artisan::output();
+            //匹配文件名
+            $ret = preg_match('~Created Migration: (.*)\n~Uuis', $output, $matched);
+            //判断是否匹配成功
+            if ($ret <= 0) {
+                //输出错误
+                $this->output->warning('Migration出现未知错误');
+                return true;
+            }
+            //初始化文件名
+            $migrationName = $matched[1];
+            //判断是否不存在目录
+            !File::isDirectory($dir_path) && File::makeDirectory($dir_path, 0777, true);
+            //填充迁移文件
+            $this->putContent(database_path('migrations/fillings/'.$migrationName.'.php'), $this->getTplContent('migration_fillings'));
+            //删除原创建迁移文件
+            File::delete(database_path('migrations/'.$migrationName.'.php'));
+        }
+        //返回成功
+        return true;
+    }
+
+    /**
      * 创建迁移文件
      * @Author Abnermouke <abnermouke@gmail.com>
      * @Originate in Company Yunnitec.
@@ -150,6 +193,8 @@ class PackageCommands extends Command
      */
     private function makeMigration()
     {
+        //检测迁移文件
+        $this->checkFillingMigration();
         //判断是否存在目录信息
         if ($this->tplParams['__DICTIONARY__'] && !empty($this->tplParams['__DICTIONARY__'])) {
             //整理迁移名称
