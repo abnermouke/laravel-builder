@@ -820,7 +820,7 @@ class BaseRepository
         //整理更新数据
         $data = $this->setData($data);
         //更新或新增数据
-        return $this->setResult($this->model->updateOrInsert($condition, $data));
+        return $this->model->updateOrInsert($condition, $data);
     }
 
     /**
