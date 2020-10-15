@@ -79,12 +79,18 @@ means to build a `accounts` packages
 
 生成`accounts`相关的系列文件信息。
 
---
+##### 更新进度
 
-2020.10.16 新增结巴分词相关处理逻辑（Abnermouke\LaravelBuilder\Library\Currency\JiebaLibrary），请在使用前执行命令：
+2020.10.16 - 新增结巴分词相关处理逻辑（Abnermouke\LaravelBuilder\Library\Currency\JiebaLibrary），请在使用前执行命令：
 
 ```shell
-composer require "fukuball/jieba-php"
+composer require fukuball/jieba-php
+```
+
+2020.10.16 - 新增php-DFA-filterWord相关处理逻辑（Abnermouke\LaravelBuilder\Library\Currency\SensitiveFilterLibrary），请在使用前执行命令：
+
+```shell
+composer require lustre/php-dfa-sensitive
 ```
 
 更多精彩，敬请期待！
