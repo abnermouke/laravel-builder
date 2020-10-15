@@ -79,11 +79,21 @@ means to build a `accounts` packages
 
 生成`accounts`相关的系列文件信息。
 
+--
+
+2020.10.16 新增结巴分词相关处理逻辑（Abnermouke\LaravelBuilder\Library\Currency\JiebaLibrary），请在使用前执行命令：
+
+```shell
+composer require "fukuball/jieba-php"
+```
+
 更多精彩，敬请期待！
 
 ## GIT Remark
+```shell
 git tag -d [tag]
 git push origin :refs/tags/[tag]
+```
 
 ## License
 
