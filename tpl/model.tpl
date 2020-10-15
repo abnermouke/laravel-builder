@@ -32,6 +32,12 @@ class {__CASE_NAME__} extends BaseModel
 
     //类型分组解释信息
     public const TYPE_GROUPS = [
+        //是否选择
+        '__switch__' => [self::SWITCH_ON => '是', self::SWITCH_OFF => '不是'],
+        //默认状态
+        '__status__' => [self::STATUS_ENABLED => '正常启用', self::STATUS_DISABLED => '禁用中', self::STATUS_VERIFYING => '审核中', self::STATUS_VERIFY_FAILED => '审核失败', self::STATUS_DELETED => '已删除'],
+
         //
+
     ];
 }

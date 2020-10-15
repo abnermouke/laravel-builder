@@ -66,9 +66,8 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
     private function defaultData()
     {
         // TODO : 默认数据在此添加
-        //设置默认数据
         $data = [];
-        if ($data && !empty($data)) {
+        if ($data) {
             //引入{__LOWER_CASE_NAME__}Repository
             $repository = new {__LOWER_CASE_NAME__}Repository();
             //添加数据
