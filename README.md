@@ -93,6 +93,8 @@ composer require fukuball/jieba-php
 composer require lustre/php-dfa-sensitive
 ```
 
+2020.10.17 - 新增数据库处理对JSON的支持
+
 更多精彩，敬请期待！
 
 ## GIT Remark
