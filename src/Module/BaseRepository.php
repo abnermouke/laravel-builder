@@ -1033,7 +1033,7 @@ class BaseRepository
     public function setIncrementId($auto_increment = 1)
     {
         //整理设置自增ID语句
-        $sql = 'ALTER TABLE `'.$this->table_name.'` auto_increment = '.(int)($auto_increment);
+        $sql = "ALTER TABLE `$this->table_name` auto_increment = $auto_increment";
         //开始执行
         return $this->sqlStatement($sql);
     }
@@ -1050,7 +1050,7 @@ class BaseRepository
     public function setTableComment($comment = '')
     {
         //整理设置自增ID语句
-        $sql = 'ALTER TABLE `'.$this->table_name.'` comment '.$comment;
+        $sql = "ALTER TABLE `$this->table_name` comment '$comment'";
         //开始执行
         return $this->sqlStatement($sql);
     }
