@@ -12,7 +12,6 @@ use App\Repository{__DICTIONARY__}\{__LOWER_CASE_NAME__}Repository;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
 /**
 * {__DATA_NAME__}数据迁移处理器
@@ -45,14 +44,14 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
 
             //TODO : 索引配置
         });
-        //初始化自增涨值
-        $auto_increment = 1;
+        //引入{__LOWER_CASE_NAME__}Repository
+        $repository = new {__LOWER_CASE_NAME__}Repository();
         //添加表注释
-        DB::connection({__CASE_NAME__}::DB_CONNECTION)->statement("ALTER TABLE `{__DB_PREFIX__}{__NAME__}` comment '{__TABLE_NAME__}'");
+        $repository->setIncrementId(1);
         //修改表自增长值
-        DB::connection({__CASE_NAME__}::DB_CONNECTION)->statement('ALTER TABLE `{__DB_PREFIX__}{__NAME__}` auto_increment = '.(int)$auto_increment);
+        $repository->setTableComment('{__TABLE_NAME__}');
         //设置默认数据
-        $this->defaultData();
+        $this->defaultData($repository);
     }
 
     /**
@@ -60,21 +59,16 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
       * @Author {__AUTHOR__} <{__AUTHOR_CONTACT_EMAIL}>
       * @Originate in {__ORIGINATE__}
       * @Time {__DATE__} {__TIME__}
-      * @return array
+      * @param $repository {__LOWER_CASE_NAME__}Repository
+      * @return mixed
       * @throws \Exception
     */
-    private function defaultData()
+    private function defaultData($repository)
     {
-        // TODO : 默认数据在此添加
-        $data = [];
-        if ($data) {
-            //引入{__LOWER_CASE_NAME__}Repository
-            $repository = new {__LOWER_CASE_NAME__}Repository();
-            //添加数据
-            $repository->insertAll($data);
-        }
+        // TODO : 默认数据处理逻辑
+
         //返回数据
-        return $data;
+        return true;
     }
 
     /**

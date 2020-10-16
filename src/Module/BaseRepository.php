@@ -139,7 +139,7 @@ class BaseRepository
     /**
      * 反转义系统值，避免错误
      * @Author Abnermouke <abnermouke@gmail.com>
-     * @Originate in Company <Macbook Pro>
+     * @Originate in Company Yunnitec.
      * @Time 2020-07-31 14:37:31
      * @param $value
      * @return string
@@ -149,6 +149,52 @@ class BaseRepository
     {
         //判断类型
         return $value && !empty($value) && is_string($value) ? stripslashes($value) : $value;
+    }
+
+    /**
+     * 反转移系统实例返回对象
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-10-17 00:21:43
+     * @param $values
+     * @return array|mixed
+     * @throws \Exception
+     */
+    private function stripslashesResult($values)
+    {
+        //判断数据
+        if ($values && !empty($values) && is_array($values)) {
+            //循环数据
+            foreach ($values as $field => $value) {
+                //初始化数据
+                $values[$field] = is_array($value) ? $this->stripslashesResult($value) : $this->stripslashesValue((is_null($value) ? '' : $this->checkJsonValue($value, true)));
+            }
+        }
+        //返回数据
+        return $values;
+    }
+
+    /**
+     * 检测是否为json字符串系统值
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-10-17 00:22:49
+     * @param string $value
+     * @param false $assoc
+     * @return array|mixed|string
+     * @throws \Exception
+     */
+    private function checkJsonValue($value = '', $assoc = false)
+    {
+        //反json数据
+        $data = json_decode($value, $assoc);
+        //判断是否为json字符串
+        if (($data && is_object($data)) || (is_array($data) && !empty($data))) {
+            //返回反json数据
+            return $data;
+        }
+        //返回愿数据
+        return $value;
     }
 
     /**
@@ -166,7 +212,7 @@ class BaseRepository
         foreach ($data as $field => $value)
         {
             //初始化数据信息
-            $data[$field] = $this->addslashesValue((is_null($value) ? '' : $value));
+            $data[$field] = !is_array($value) ? $this->addslashesValue((is_null($value) ? '' : $value)) : json_encode($value, JSON_UNESCAPED_UNICODE);
         }
         //返回处理数据
         return $data;
@@ -503,17 +549,8 @@ class BaseRepository
     {
         //初始化返回数据
         $query_result = $query_result && !empty($query_result) && is_object($query_result) ? json_decode($query_result, true) : $query_result;
-        //判断数据信息
-        if ($query_result && !empty($query_result) && is_array($query_result)) {
-            //循环数据
-            foreach ($query_result as $field => $value)
-            {
-                //初始化数据信息
-                $query_result[$field] = $this->stripslashesValue((is_null($value) ? '' : $value));
-            }
-        }
-        //继续返回
-        return $query_result;
+        //初始化返回数据
+        return $this->stripslashesResult($query_result);
     }
 
     /**
@@ -1001,5 +1038,20 @@ class BaseRepository
         return $this->sqlStatement($sql);
     }
 
-
+    /**
+     * 设置表注释
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-10-17 00:30:37
+     * @param string $comment 注释内容
+     * @return bool
+     * @throws \Exception
+     */
+    public function setTableComment($comment = '')
+    {
+        //整理设置自增ID语句
+        $sql = 'ALTER TABLE `'.$this->table_name.'` comment '.$comment;
+        //开始执行
+        return $this->sqlStatement($sql);
+    }
 }
