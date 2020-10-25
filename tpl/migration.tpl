@@ -44,14 +44,12 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
 
             //TODO : 索引配置
         });
-        //引入{__LOWER_CASE_NAME__}Repository
-        $repository = new {__LOWER_CASE_NAME__}Repository();
         //添加表注释
-        $repository->setIncrementId(1);
+        (new {__LOWER_CASE_NAME__}Repository())->setIncrementId(1, {__CASE_NAME__}::DB_CONNECTION);
         //修改表自增长值
-        $repository->setTableComment('{__TABLE_NAME__}');
+        (new {__LOWER_CASE_NAME__}Repository())->setTableComment('{__TABLE_NAME__}', {__CASE_NAME__}::DB_CONNECTION);
         //设置默认数据
-        $this->defaultData($repository);
+        $this->defaultData();
     }
 
     /**
@@ -59,12 +57,14 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
       * @Author {__AUTHOR__} <{__AUTHOR_CONTACT_EMAIL}>
       * @Originate in {__ORIGINATE__}
       * @Time {__DATE__} {__TIME__}
-      * @param $repository {__LOWER_CASE_NAME__}Repository
       * @return mixed
       * @throws \Exception
     */
-    private function defaultData($repository)
+    private function defaultData()
     {
+        //引入{__LOWER_CASE_NAME__}Repository
+        $repository = new {__LOWER_CASE_NAME__}Repository();
+
         // TODO : 默认数据处理逻辑
 
         //返回数据

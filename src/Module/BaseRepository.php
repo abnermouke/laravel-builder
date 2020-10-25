@@ -766,8 +766,6 @@ class BaseRepository
         try {
             //循环数据组
             foreach ($groupData as $num => $group) {
-                //整理插入数据
-                $group = $this->setData($group);
                 //判断是否忽略重复插入记录到数据库的错误
                 if ($autoIgnore) {
                     //返回插入结果
@@ -1027,15 +1025,16 @@ class BaseRepository
      * @Originate in Company Yunnitec.
      * @Time 2019-12-09 15:01:09
      * @param int $auto_increment 自增ID值
+     * @param null $connection current model connection
      * @return bool
      * @throws \Exception
      */
-    public function setIncrementId($auto_increment = 1)
+    public function setIncrementId($auto_increment = 1, $connection = null)
     {
         //整理设置自增ID语句
         $sql = "ALTER TABLE `$this->table_name` auto_increment = $auto_increment";
         //开始执行
-        return $this->sqlStatement($sql);
+        return $this->sqlStatement($sql, $connection);
     }
 
     /**
@@ -1044,14 +1043,15 @@ class BaseRepository
      * @Originate in Company Yunnitec.
      * @Time 2020-10-17 00:30:37
      * @param string $comment 注释内容
+     * @param null $connection current model connection
      * @return bool
      * @throws \Exception
      */
-    public function setTableComment($comment = '')
+    public function setTableComment($comment = '', $connection = null)
     {
-        //整理设置自增ID语句
+        //整理设置表注释
         $sql = "ALTER TABLE `$this->table_name` comment '$comment'";
         //开始执行
-        return $this->sqlStatement($sql);
+        return $this->sqlStatement($sql, $connection);
     }
 }

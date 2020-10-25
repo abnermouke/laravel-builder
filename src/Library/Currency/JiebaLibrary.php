@@ -84,13 +84,13 @@ class JiebaLibrary
      * @Originate in Company Yunnitec.
      * @Time 2020-10-15 15:48:53
      * @param $content_raw string 处理语句
-     * @param int $top_limit 获取前多少位，默认：10
+     * @param int $top_limit 获取前多少位，默认：20
      * @param string $stop_dictionary 自定义停止词典
      * @param int $memory_limit 内存调整数值（单位：M）
      * @return array
      * @throws \Exception
      */
-    public static function cutTags($content_raw, $top_limit = 10, $stop_dictionary = '', $memory_limit = 2048)
+    public static function cutTags($content_raw, $top_limit = 20, $stop_dictionary = '', $memory_limit = 2048)
     {
         //调整运行内存
         ini_set('memory_limit', $memory_limit.'M');
@@ -161,16 +161,17 @@ class JiebaLibrary
      * @param $content_raw string 处理语句
      * @param array $except_types 剔除词性
      * @param string $user_dictionary 自定义词典，提高纠错能力（一個詞佔一行；每一行分為三部分，一部分為詞語，一部分為詞頻，一部分為詞性，用空格隔開）
+     * @param int $top_limit 获取前多少位，默认：20
      * @param int $memory_limit 内存调整数值（单位：M）
      * @return array
      * @throws \Exception
      */
-    public static function cutSearchKeywords($content_raw, $except_types = ['w', 'u', 'ud', 'ug', 'uj', 'ul', 'uv', 'uz', 'q', 'p', 'd', 'df', 'dg', 'x', 'z', 'zg'], $user_dictionary = '', $memory_limit = 2048)
+    public static function cutSearchKeywords($content_raw, $except_types = ['w', 'u', 'ud', 'ug', 'uj', 'ul', 'uv', 'uz', 'q', 'p', 'd', 'df', 'dg', 'x', 'z', 'zg'], $user_dictionary = '', $top_limit = 20, $memory_limit = 2048)
     {
         //根据词性拆分内容
         $words = self::cutTypes($content_raw, $except_types, $user_dictionary, (int)$memory_limit);
         //返回分词结果
-        return $words ? array_keys(self::cutTags(implode(' ', array_keys($words)))) : [];
+        return $words ? array_keys(self::cutTags(implode(' ', array_keys($words)), (int)$top_limit)) : [];
     }
 
     /**
