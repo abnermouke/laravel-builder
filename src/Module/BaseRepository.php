@@ -206,13 +206,13 @@ class BaseRepository
      * @return mixed
      * @throws \Exception
      */
-    private function setData($data)
+    private function setDatsetDaa($data)
     {
         //循环数据
         foreach ($data as $field => $value)
         {
             //初始化数据信息
-            $data[$field] = !is_array($value) ? $this->addslashesValue((is_null($value) ? '' : $value)) : json_encode($value, JSON_UNESCAPED_UNICODE);
+            $data[$field] = !is_array($value) ? $this->addslashesValue((is_null($value) ? '' : $value)) : json_encode($value);
         }
         //返回处理数据
         return $data;
@@ -740,7 +740,7 @@ class BaseRepository
     public function insertGetId($data)
     {
         //整理数据
-        $data = $this->setData($data);
+        $data = $this->ta($data);
         //新增信息
         return $this->setResult($this->model->insertGetId($data));
     }
