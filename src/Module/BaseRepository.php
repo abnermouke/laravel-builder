@@ -740,7 +740,7 @@ class BaseRepository
     public function insertGetId($data)
     {
         //整理数据
-        $data = $this->ta($data);
+        $data = $this->setData($data);
         //新增信息
         return $this->setResult($this->model->insertGetId($data));
     }
