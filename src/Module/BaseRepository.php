@@ -206,7 +206,7 @@ class BaseRepository
      * @return mixed
      * @throws \Exception
      */
-    private function setDatsetDaa($data)
+    private function setData($data)
     {
         //循环数据
         foreach ($data as $field => $value)
