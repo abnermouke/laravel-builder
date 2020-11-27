@@ -113,7 +113,7 @@ if (!function_exists('friendly_time')) {
      * @return bool|false|int|string
      * @throws \Exception
      */
-    function friendly_time($time, $type = 'normal') {
+    function friendly_time($time, $type = 'blurry') {
         //转换时间信息
         $time = to_time($time);
         //判断时间信息
@@ -184,14 +184,20 @@ if (!function_exists('friendly_time')) {
                 break;
             case 'blurry':
                 if ((int)$dTime < 60) {
-                    //设置时间字符串
-                    $timeString = $dTime.'秒前';
+                    //判断时间小于10秒
+                    if ($dTime < 10) {
+                        //设置时间字符串
+                        $timeString = '刚刚';
+                    } else {
+                        //设置时间字符串
+                        $timeString = $dTime . ' 秒前';
+                    }
                 } elseif ((int)$dTime < 3600) {
                     //设置时间字符串
                     $timeString = (int)($dTime / 60).'分钟前';
                 } elseif ((int)$dTime >= 3600 && (int)$dDay === 0) {
                     //设置时间字符串
-                    $timeString = (int)$dDay.'小时前';
+                    $timeString = (int)($dTime/3600).'小时前';
                 } elseif ((int)$dDay > 0 && (int)$dDay <= 7) {
                     //设置时间字符串
                     $timeString = (int)$dDay.'天前';

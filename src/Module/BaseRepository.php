@@ -21,6 +21,9 @@ class BaseRepository
     // current model object
     protected $model;
 
+    // current clean model object
+    protected $clean_model;
+
     // current model connection
     protected $connection;
 
@@ -40,9 +43,9 @@ class BaseRepository
     public function __construct($model, $connection = null)
     {
         // set current model and default model object
-        $this->model = $this->default_model = $model;
+        $this->default_model = $model;
         // set current model table name
-        $this->table_name = $this->model::TABLE_NAME;
+        $this->table_name = $this->default_model::TABLE_NAME;
         // set current model connection
         $this->setConnection($connection);
     }
@@ -61,7 +64,7 @@ class BaseRepository
         // set current model connection
         $this->connection = $connection;
         // set current model connection to current model object
-        $this->model = $this->model::on($connection);
+        $this->model = $this->clean_model = $this->default_model::on($connection);
         // return this
         return $this;
     }
@@ -99,7 +102,7 @@ class BaseRepository
             // set current table name
             $this->table_name = $table_name;
             // set current model object and table name
-            $this->model = $this->default_model->setTable($table_name);
+            $this->model = $this->clean_model = $this->default_model->setTable($table_name);
         }
         // return this
         return $this;
@@ -370,12 +373,30 @@ class BaseRepository
                     $query = $query->whereRaw($value);
                     break;
                 case 'like':
+                    //初始化查询字段信息
+                    $fields = explode('|', $field);
+                    //整理字段信息
+                    foreach ($fields as $k => $field) {
+                        //判断是否存在表名
+                        $field = strstr($field, '.') ? ("`".Arr::first(explode('.', $field))."`.`".Arr::last(explode('.', $field))."`") : "`".$field."`";
+                        //设置字段信息
+                        $fields[$k] = "trim(replace(".$field.", ' ', ''))";
+                    }
                     //初始化whereRaw查询条件
-                    $query = $query->whereRaw("trim(replace(`".$field."`, ' ', '')) like trim(replace('".$value."', ' ', ''))");
+                    $query = $query->whereRaw("concat(".implode(',', $fields).") like trim(replace('".$value."', ' ', ''))");
                     break;
                 case 'not-like':
+                    //初始化查询字段信息
+                    $fields = explode('|', $field);
+                    //整理字段信息
+                    foreach ($fields as $k => $field) {
+                        //判断是否存在表名
+                        $field = strstr($field, '.') ? ("`".Arr::first(explode('.', $field))."`.`".Arr::last(explode('.', $field))."`") : "`".$field."`";
+                        //设置字段信息
+                        $fields[$k] = "trim(replace(".$field.", ' ', ''))";
+                    }
                     //初始化whereRaw查询条件
-                    $query = $query->whereRaw("trim(replace(`".$field."`, ' ', '')) not like trim(replace('".$value."', ' ', ''))");
+                    $query = $query->whereRaw("concat(".implode(',', $fields).") not like trim(replace('".$value."', ' ', ''))");
                     break;
                 case 'json':
                     //初始化where(JSON 本特性仅支持 MySQL 5.7、PostgreSQL、SQL Server 2016 以及 SQLite 3.9.0)查询条件
@@ -417,6 +438,22 @@ class BaseRepository
         }
         //返回实例对象
         return $query;
+    }
+
+    /**
+     * 重置模型
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-10-29 19:22:39
+     * @return mixed
+     * @throws \Exception
+     */
+    private function model()
+    {
+        //重新设置模型
+        $this->setConnection($this->connection);
+        //返回模型对象
+        return $this->model;
     }
 
     /**
@@ -619,7 +656,7 @@ class BaseRepository
     public function row($conditions = [], $fields = ['*'], $orders = ['created_at' => 'desc'])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //设置排序惠泽
         $query = $this->setOrders($query, $orders);
         //调试sql
@@ -641,7 +678,7 @@ class BaseRepository
     public function find($conditions, $field)
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //获取信息
         $data = $query->first($this->setFields([$field]));
         //返回查询数据
@@ -661,7 +698,7 @@ class BaseRepository
     public function pluck($field, $conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //调试SQL
         $this->debug_sql && $query->dd();
         //继续查询
@@ -684,7 +721,7 @@ class BaseRepository
     public function get($conditions = [], $fields = [], $joins = [], $orders = [], $group = '')
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //初始化表链接信息
         $query = $this->setJoins($query, $joins);
         //初始化排序信息
@@ -715,7 +752,7 @@ class BaseRepository
     public function limit($conditions, $fields = [], $joins = [], $orders = [], $group = '', $page = 1, $page_size = 20)
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //初始化表链接信息
         $query = $this->setJoins($query, $joins);
         //初始化排序信息
@@ -802,7 +839,7 @@ class BaseRepository
         //整理更新数据
         $data = $this->setData($data);
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->update($data));
     }
@@ -819,7 +856,7 @@ class BaseRepository
     public function delete($conditions)
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->delete());
     }
@@ -872,7 +909,7 @@ class BaseRepository
     public function increment($field, $conditions = [], $inc = 1)
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //自增数据
         return $this->setResult($query->increment($field, $inc));
     }
@@ -891,7 +928,7 @@ class BaseRepository
     public function decrement($field, $conditions = [], $dec = 1)
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //自增数据
         return $this->setResult($query->decrement($field, $dec));
     }
@@ -908,7 +945,7 @@ class BaseRepository
     public function count($conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->count());
     }
@@ -926,7 +963,7 @@ class BaseRepository
     public function max($field, $conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->max($field));
     }
@@ -944,7 +981,7 @@ class BaseRepository
     public function min($field, $conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->min($field));
     }
@@ -962,7 +999,7 @@ class BaseRepository
     public function avg($field, $conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->avg($field));
     }
@@ -980,7 +1017,7 @@ class BaseRepository
     public function sum($field, $conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->sum($field));
     }
@@ -997,7 +1034,7 @@ class BaseRepository
     public function exists($conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->exists());
     }
@@ -1014,7 +1051,7 @@ class BaseRepository
     public function doesntExists($conditions = [])
     {
         //初始化请求
-        $query = $this->setConditions($this->model, $conditions);
+        $query = $this->setConditions($this->model(), $conditions);
         //继续查询
         return $this->setResult($query->doesntExist());
     }

@@ -27,20 +27,26 @@ class BaseCacheHandler extends BaseHandler
     //cache env
     protected $env = false;
 
+    //cache locale
+    protected $locale = false;
+
     /**
      * Laravel Builder Basic Cache Handler Construct
      * BaseCacheHandler constructor.
      * @param $cache_name string Cache name
      * @param $expire_seconds int Cache expire seconds
      * @param $driver string Cache driver
-     * @param bool $env mixed Cache env
+     * @param $env mixed Cache env
+     * @param $locale mixed Cache Locale
      */
-    public function __construct($cache_name, $expire_seconds, $driver, $env = false)
+    public function __construct($cache_name, $expire_seconds, $driver, $env = false, $locale = false)
     {
         //init cache env
         $this->env = $env ? $env : config('app.env', 'production');
+        //init cache locale
+        $this->locale = $locale ? $locale : config('app.locale', 'zh-cn');
         // init cache name
-        $this->cache_name = $this->env.':'.$cache_name;
+        $this->cache_name = $this->env.':'.$this->locale.':'.$cache_name;
         //init cache expire seconds
         $this->expire_seconds = (int)$expire_seconds;
         //init cache driver
