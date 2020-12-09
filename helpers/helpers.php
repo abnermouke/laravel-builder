@@ -36,7 +36,7 @@ if (!function_exists('proxy_assets')) {
                 break;
         }
         //添加固定版本号
-        $path .= (strpos($path, '?') !== false ? "&" : "?")."v=".($version && !empty($version) ? $version : config('builder.app_version'));
+        $path .= ($version ? ((strpos($path, '?') !== false ? "&" : "?")."v=".config('builder.app_version')) : '');
         //整理信息
         return $path;
     }
