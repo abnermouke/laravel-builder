@@ -136,7 +136,7 @@ class BaseRepository
     private function addslashesValue($value)
     {
         //判断类型
-        return $value && !empty($value) && is_string($value) && !get_magic_quotes_gpc() ? addslashes($value) : $value;
+        return $value && !empty($value) && is_string($value) ? addslashes($value) : $value;
     }
 
     /**
