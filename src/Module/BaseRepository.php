@@ -172,6 +172,9 @@ class BaseRepository
                 //初始化数据
                 $values[$field] = is_array($value) ? $this->stripslashesResult($value) : $this->stripslashesValue((is_null($value) ? '' : $this->checkJsonValue($value, true)));
             }
+        } elseif (is_string($values)) {
+            //设置反转义
+            $values = $this->stripslashesValue($values);
         }
         //返回数据
         return $values;
