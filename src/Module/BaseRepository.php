@@ -636,7 +636,7 @@ class BaseRepository
         //查询总数量
         $total_count = $this->count();
         //查询匹配总数量
-        $matched_count = $this->count($conditions);
+        $matched_count = $this->count($conditions, $joins);
         //数据列表
         $lists = $this->limit($conditions, $fields, $joins, $orders && !empty($orders) ? $orders : ['id' => 'desc'], $group, (int)$page, (int)$page_size);
         //生成总页码
@@ -942,13 +942,16 @@ class BaseRepository
      * @Originate in Company Yunnitec.
      * @Time 2020-04-29 15:00:52
      * @param array $conditions 查询条件
+     * @param mixed $joins join查询条件
      * @return mixed
      * @throws \Exception
      */
-    public function count($conditions = [])
+    public function count($conditions = [], $joins = false)
     {
         //初始化请求
         $query = $this->setConditions($this->model(), $conditions);
+        //设置join条件
+        $query = $this->setJoins($query, $joins);
         //继续查询
         return $this->setResult($query->count());
     }
