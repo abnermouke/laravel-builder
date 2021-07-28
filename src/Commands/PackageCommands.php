@@ -3,6 +3,7 @@
 namespace Abnermouke\LaravelBuilder\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -69,7 +70,7 @@ class PackageCommands extends Command
             '__AUTHOR__' => data_get($config, 'author', 'Abnermouke'),
             '__AUTHOR_CONTACT_EMAIL' => data_get($config, 'author_email', 'abnermouke@gmail.com'),
             '__ORIGINATE__' => data_get($config, 'original', 'Yunni Technology Co Ltd.'),
-            '__DB_PREFIX__' => data_get($config, 'database_prefix', ''),
+//            '__DB_PREFIX__' => data_get($config, 'database_prefix', ''),
             '__DB_CONNECTION__' => data_get($config, 'database_connection', 'mysql'),
             '__DATA_CACHE_DRIVER__' => data_get($config, 'cache_driver', 'file'),
         ];
@@ -87,15 +88,15 @@ class PackageCommands extends Command
     public function handle()
     {
         //获取生成文件包统一名称
-        $this->tplParams['__NAME__'] = $this->tplParams['__MIGRATION_NAME_'] = $name = $this->argument('name');
+        $this->tplParams['__NAME__'] = $this->tplParams['__MIGRATION_NAME__'] = $name = $this->argument('name');
         //提示输入表名
         $this->tplParams['__TABLE_NAME__'] = $tableName = $this->output->ask('请输入当前表注释名称并以"表"字结尾，例如：用户基本信息表');
         //提示获取目录结构
-        $this->tplParams['__DICTIONARY__'] = $dictionary =  (string)$this->output->ask('多项目部署时如需对各服务文件进行分开部署请输入目录名称，例如：www');
+        $this->tplParams['__DICTIONARY__'] = $dictionary =  (string)$this->output->ask('多项目部署时如需对各服务文件进行分开部署请输入目录名称，多层级请使用 \ 分割，例如：www (www\home)');
         //检测是否存在数据库表前缀
         if (empty($this->tplParams['__DB_PREFIX__'])) {
             //提示设置数据库前缀
-            $this->tplParams['__DB_PREFIX__'] = $dbPrefix = (string)$this->output->ask('检测到并未设置数据库表前缀，如数据库表存在统一前缀，请输入前缀，例如：system_');
+            $this->tplParams['__DB_PREFIX__'] = $dbPrefix = (string)$this->output->ask('请设置数据库表前缀，如数据库表存在统一前缀，请输入前缀，例如：'.config('builder.database_prefix', 'system_'), config('builder.database_prefix', ''));
             //初始化数据库前缀信息
             !empty($dbPrefix) && $this->tplParams['__DB_PREFIX__'] = Str::finish($dbPrefix, '_');
         }
@@ -125,7 +126,7 @@ class PackageCommands extends Command
         //询问是否生成数据缓存
         if ($this->confirm('是否生成数据缓存文件？', config('builder.default_builder.data_cache', true))) {
             //设置基础缓存名
-            $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary && !empty($dictionary) ? strtolower($dictionary).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower($dictionary).'_' : '').$name.'_data_cache'));
+            $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache'));
             //设置缓存过期时间，随机1小时-一天
             $this->tplParams['__DATA_CACHE_EXPIRE_SECOND__'] = $this->ask('您可以自定义数据缓存过期时间（单位：s）,系统将默认设定为 1 小时至一天的随机时间过期，您也可以自定义，0 为永远不过期，请输入当前数据缓存的过期时间！', rand(3600, 86400));
             //生成数据缓存文件
@@ -198,13 +199,15 @@ class PackageCommands extends Command
         //判断是否存在目录信息
         if ($this->tplParams['__DICTIONARY__'] && !empty($this->tplParams['__DICTIONARY__'])) {
             //整理迁移名称
-            $this->tplParams['__MIGRATION_NAME_'] = strtolower(Str::after($this->tplParams['__DICTIONARY__'], '\\')).'_'.$this->tplParams['__NAME__'];
+            $this->tplParams['__MIGRATION_NAME__'] = strtolower(Str::after($this->tplParams['__DICTIONARY__'], '\\')).'_'.$this->tplParams['__NAME__'];
+            //判断信息
+            $this->tplParams['__MIGRATION_NAME__'] = strstr($this->tplParams['__MIGRATION_NAME__'], '\\') ? Str::snake(str_replace('\\', '_', $this->tplParams['__MIGRATION_NAME__'])) : $this->tplParams['__MIGRATION_NAME__'];
             //设置迁移显示类名称
-            $this->tplParams['__MIGRATION_CASE_NAME_'] = Str::studly($this->tplParams['__MIGRATION_NAME_']);
+            $this->tplParams['__MIGRATION_CASE_NAME_'] = Str::studly($this->tplParams['__MIGRATION_NAME__']);
         }
         try {
             //执行命令
-            Artisan::call('make:migration', ['name' => 'create_'.$this->tplParams['__MIGRATION_NAME_'].'_table']);
+            Artisan::call('make:migration', ['name' => 'create_'.$this->tplParams['__MIGRATION_NAME__'].'_table']);
         } catch (\Exception $exception) {
             //输出错误
             $this->output->warning($exception->getMessage());
@@ -232,15 +235,17 @@ class PackageCommands extends Command
             $migrationPath = $migrationDictionaryPath = database_path('migrations/'.$migrationName.'.php');
             //判断是否存在目录信息
             if ($this->tplParams['__DICTIONARY__'] && !empty($this->tplParams['__DICTIONARY__'])) {
+                //获取子目录名称
+                $dictionary_name = Arr::first(explode('_', $this->tplParams['__MIGRATION_NAME__']));
                 //整理目录
-                $migrationDictionary = database_path('migrations/'.strtolower(str_replace('\\', '/', $this->tplParams['__DICTIONARY__'])));
+                $migrationDictionary = database_path('migrations/'.strtolower($dictionary_name));
                 //判断目录是否存在
                 if (!File::isDirectory($migrationDictionary)) {
                     //创建目录
                     File::makeDirectory($migrationDictionary, 0777, true, true);
                 }
                 //整理目录地址
-                $migrationDictionaryPath = database_path('migrations/'.strtolower(str_replace('\\', '/', $this->tplParams['__DICTIONARY__'])).'/'.$migrationName.'.php');
+                $migrationDictionaryPath = database_path('migrations/'.strtolower($dictionary_name).'/'.$migrationName.'.php');
             }
             //设置内容
             $this->putContent($migrationDictionaryPath, $content);

@@ -261,3 +261,22 @@ if (!function_exists('encodeURIComponent')) {
         return strtr(rawurlencode($str), $revert);
     }
 }
+
+
+if (!function_exists('formatting_time')){
+    /**
+     * 格式化时间
+     * @param $time
+     * @param string $format
+     * @return bool|int|string|null
+     * @throws Exception
+     */
+    function formatting_time($time, $format = 'Y-m-d H:i:s'){
+        //转换时间信息
+        $time = to_time($time);
+        //判断时间信息
+        if (!$time) {return $time;}
+        //返回指定时间
+        return date($format, $time);
+    }
+}
