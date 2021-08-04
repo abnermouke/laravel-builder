@@ -105,7 +105,7 @@ class PackageCommands extends Command
         //整理驼峰名称（小写）
         $this->tplParams['__LOWER_CASE_NAME__'] = Str::singular($caseName);
         //整理驼峰目录名称
-        $this->tplParams['__DICTIONARY__'] = data_get($this->tplParams, '__DICTIONARY__', false) ? Str::start(Str::studly($this->tplParams['__DICTIONARY__']), '\\') : '';
+        $this->tplParams['__DICTIONARY__'] = data_get($this->tplParams, '__DICTIONARY__', false) ? Str::start($this->caseDictionary($this->tplParams['__DICTIONARY__']), '\\') : '';
         //匹配数据名
         $ret = preg_match('~(.*)表~Uuis', $tableName, $matched);
         //初始化数据名
@@ -481,4 +481,24 @@ class PackageCommands extends Command
         return $content;
     }
 
+    /**
+     * 设置多层级目录结构
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Abnermouke's MBP
+     * @Time 2021-08-04 11:15:59
+     * @param $dictionary
+     * @return string
+     */
+    private function caseDictionary($dictionary)
+    {
+        //拆分目录
+        $dictionaries = explode('\\', $dictionary);
+        //循环目录信息
+        foreach ($dictionaries as $k => $dict) {
+            //设置信息
+            $dictionaries[$k] = Str::studly($dict);
+        }
+        //返回信息
+        return implode('\\', $dictionaries);
+    }
 }
