@@ -95,6 +95,8 @@ composer require lustre/php-dfa-sensitive
 
 2020.10.17 - 新增数据库处理对JSON的支持
 
+2021.08.27 - 新增Session辅助函数，更改Builder构建逻辑，支持多目录结构构建，修复已知BUG（可无损更新）
+
 更多精彩，敬请期待！
 
 ## GIT Remark
