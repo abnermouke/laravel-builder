@@ -57,7 +57,7 @@ class BaseCacheHandler extends BaseHandler
 
     /**
      * Laravel Builder Basic Cache Handler to save cache data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:15:43
      * @return bool
@@ -76,7 +76,7 @@ class BaseCacheHandler extends BaseHandler
 
     /**
      * Laravel Builder Basic Cache Handler to clear cache data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:15:49
      * @return bool
@@ -92,7 +92,7 @@ class BaseCacheHandler extends BaseHandler
 
     /**
      * Laravel Builder Basic Cache Handler to get cache data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:15:59
      * @param string $index
@@ -118,7 +118,7 @@ class BaseCacheHandler extends BaseHandler
 
     /**
      * Laravel Builder Basic Cache Handler to forget cache data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:16:08
      * @return bool
@@ -132,7 +132,7 @@ class BaseCacheHandler extends BaseHandler
 
     /**
      * Laravel Builder Basic Cache Handler to read cache data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 16:16:17
      * @return array|mixed

@@ -8,7 +8,7 @@
 if (!function_exists('responseService')) {
     /**
      * 响应逻辑服务结果
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-03 11:27:37
      * @param $service \Abnermouke\LaravelBuilder\Module\BaseService 逻辑服务对象
@@ -32,7 +32,7 @@ if (!function_exists('responseService')) {
 if (!function_exists('responseError')) {
     /**
      * 响应失败
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-03 11:21:52
      * @param int $code 响应状态码
@@ -64,7 +64,7 @@ if (!function_exists('responseError')) {
 if (!function_exists('responseSuccess')) {
     /**
      * 响应成功
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-03 11:21:52
      * @param array $data 相应数据
@@ -85,7 +85,7 @@ if (!function_exists('responseSuccess')) {
 if (!function_exists('responseReturn')) {
     /**
      * 相应返回信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-03 11:14:23
      * @param $code int 状态码

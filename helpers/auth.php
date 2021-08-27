@@ -3,7 +3,7 @@
 if (!function_exists('current_auth')) {
     /**
      * 获取当前session授权信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-06-29 11:47:17
      * @param bool $item
@@ -26,7 +26,7 @@ if (!function_exists('current_auth')) {
 if (!function_exists('set_current_auth')) {
     /**
      * 设置当前session认证信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-03-23 23:41:50
      * @param $auth
@@ -43,7 +43,7 @@ if (!function_exists('set_current_auth')) {
 if (!function_exists('auth_name')) {
     /**
      * 认证session名称
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-06-29 11:45:09
      * @param string $prefix
@@ -60,7 +60,7 @@ if (!function_exists('auth_name')) {
 if (!function_exists('auth_remove')) {
     /**
      * 删除session认证信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-06-29 11:48:50
      * @param string $prefix

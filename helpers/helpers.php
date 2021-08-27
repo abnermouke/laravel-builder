@@ -8,7 +8,7 @@
 if (!function_exists('proxy_assets')) {
     /**
      * 资源地址获取
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-22 14:54:15
      * @param $path string 资源路径
@@ -45,7 +45,7 @@ if (!function_exists('proxy_assets')) {
 if (!function_exists('auto_datetime')) {
     /**
      * 自动转换（时间戳/日期）为指定格式
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:20:09
      * @param string $format
@@ -63,7 +63,7 @@ if (!function_exists('auto_datetime')) {
 if (!function_exists('validation_fails')) {
     /**
      * 返回验证错误
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-03 23:35:30
      * @param $valid_field string 验证字段
@@ -81,7 +81,7 @@ if (!function_exists('validation_fails')) {
 if (!function_exists('seconds_to_time_string')) {
     /**
      * 秒数转时间描述信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-08 22:58:42
      * @param int $seconds 秒数
@@ -103,7 +103,7 @@ if (!function_exists('seconds_to_time_string')) {
 if (!function_exists('init_range_conditions')) {
     /**
      * 初始化范围筛选条件
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-05-13 16:57:17
      * @param $conditions array 当前条件
@@ -134,7 +134,7 @@ if (!function_exists('init_range_conditions')) {
 if (!function_exists('init_sort_rules')) {
     /**
      * 初始化查询排序规则
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-10-29 21:01:58
      * @param $sort_rules array 排序规则
@@ -169,7 +169,7 @@ if (!function_exists('init_sort_rules')) {
 if (!function_exists('create_qiniu_image_size')) {
     /**
      * 创建七牛图片大小参数信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-07-27 10:49:16
      * @param $size mixed 大小参数信息
@@ -200,7 +200,7 @@ if (!function_exists('create_qiniu_image_size')) {
 if (!function_exists('auto_locale_field')) {
     /**
      * 根据当前语言获取字段名
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-07-28 09:49:52
      * @param $field string 字段名
@@ -226,7 +226,7 @@ if (!function_exists('auto_locale_field')) {
 if (!function_exists('init_request_params')) {
     /**
      * 初始化请求参数方便保存
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-10-22 03:18:46
      * @param $params
@@ -258,7 +258,7 @@ if (!function_exists('object_2_array'))
 {
     /**
      * 对象转数组
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-02-03 21:51:28
      * @param $object
@@ -273,7 +273,7 @@ if (!function_exists('object_2_array'))
 if (!function_exists('amount_format')) {
     /**
      * 初始化金额
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-04-01 17:47:18
      * @param int $amount
@@ -304,7 +304,7 @@ if (!function_exists('amount_format')) {
 if (!function_exists('file_size')) {
     /**
      * 获取文件大小描述
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-05 16:38:05
      * @param int $file_size 文件大小
@@ -353,7 +353,7 @@ if (!function_exists('create_order_sn'))
 {
     /**
      * 创建订单号
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-02-04 02:41:25
      * @return string
@@ -370,7 +370,7 @@ if (!function_exists('random_nickname'))
 {
     /**
      * 获取随机昵称
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-03-23 16:39:22
      * @param string $last_name
@@ -391,7 +391,7 @@ if (!function_exists('random_nickname'))
 if (!function_exists('hidden_email_or_mobile')) {
     /**
      * 隐藏邮箱活手机号码
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-03-25 02:54:58
      * @param $number

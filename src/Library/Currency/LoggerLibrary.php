@@ -16,7 +16,7 @@ class LoggerLibrary
 {
     /**
      * 日志记录
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-05 12:57:58
      * @param $alias_title string 处理标示
@@ -46,7 +46,7 @@ class LoggerLibrary
 
     /**
      * 记录日志信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-05 13:05:02
      * @param string $alias_title 处理标示

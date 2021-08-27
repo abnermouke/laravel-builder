@@ -1,8 +1,8 @@
 # laravel-builder - 一款高效的Laravel架构方案生成器
 
- Power By Abnermouke <abnermouke@gmail.com>
+ Power By Abnermouke <abnermouke@outlook.com>
 
- 此工具包由Abnermouke <abnermouke@gmail.com>开发并维护。
+ 此工具包由Abnermouke <abnermouke@outlook.com>开发并维护。
 
 ---
 

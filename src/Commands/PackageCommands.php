@@ -80,7 +80,7 @@ class PackageCommands extends Command
 
     /**
      * Laravel Builder to package
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-16 11:34:24
      * @throws \Exception
@@ -144,7 +144,7 @@ class PackageCommands extends Command
 
     /**
      * 检查维护迁移文件是否存在
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-09 23:52:26
      * @return bool
@@ -187,7 +187,7 @@ class PackageCommands extends Command
 
     /**
      * 创建迁移文件
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:05:36
      * @return bool
@@ -260,7 +260,7 @@ class PackageCommands extends Command
 
     /**
      * 创建模型文件
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:06:56
      * @return bool
@@ -293,7 +293,7 @@ class PackageCommands extends Command
 
     /**
      * 创建服务容器
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:12:43
      * @return bool
@@ -326,7 +326,7 @@ class PackageCommands extends Command
 
     /**
      * 创建控制器
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:12:43
      * @return bool
@@ -359,7 +359,7 @@ class PackageCommands extends Command
 
     /**
      * 创建数据缓存
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:12:43
      * @return bool
@@ -394,7 +394,7 @@ class PackageCommands extends Command
 
     /**
      * 创建数据仓库
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:12:52
      * @return bool
@@ -427,7 +427,7 @@ class PackageCommands extends Command
 
     /**
      * 设置文件内容
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:03:54
      * @param $path string 文件绝对路径
@@ -453,7 +453,7 @@ class PackageCommands extends Command
 
     /**
      * 根据内容渲染模版获取详细模版内容
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-04-27 20:01:14
      * @param string $mode 模版类型
@@ -483,7 +483,7 @@ class PackageCommands extends Command
 
     /**
      * 设置多层级目录结构
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2021-08-04 11:15:59
      * @param $dictionary

@@ -13,7 +13,7 @@ class FakeUserAgentLibrary
 {
     /**
      * 获取随机UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 14:08:19
      * @return array|mixed|string
@@ -31,7 +31,7 @@ class FakeUserAgentLibrary
 
     /**
      * 指定Chrome访问UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 15:10:45
      * @return array|mixed|string
@@ -45,7 +45,7 @@ class FakeUserAgentLibrary
 
     /**
      * 指定Opera访问UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 15:13:06
      * @return array|mixed|string
@@ -59,7 +59,7 @@ class FakeUserAgentLibrary
 
     /**
      * 指定Firefox访问UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 15:13:09
      * @return array|mixed|string
@@ -73,7 +73,7 @@ class FakeUserAgentLibrary
 
     /**
      * 指定Internetexplorer访问UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 15:13:13
      * @return array|mixed|string
@@ -87,7 +87,7 @@ class FakeUserAgentLibrary
 
     /**
      * 指定Safari访问UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 15:13:17
      * @return array|mixed|string
@@ -101,7 +101,7 @@ class FakeUserAgentLibrary
 
     /**
      * 获取指定浏览器UA
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 14:08:26
      * @param string $browser 'chrome', 'opera', 'firefox', 'internetexplorer', 'safari'
@@ -126,7 +126,7 @@ class FakeUserAgentLibrary
 
     /**
      * 获取伪造UA信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 14:05:43
      * @return mixed

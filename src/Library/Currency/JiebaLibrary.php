@@ -19,7 +19,7 @@ class JiebaLibrary
 
     /**
      * 普通分词
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-15 13:04:20
      * @param $content_raw string 处理语句
@@ -53,7 +53,7 @@ class JiebaLibrary
 
     /**
      * 搜索引擎模式分词（拆分搜索关键词）
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-15 15:48:23
      * @param $content_raw string 处理语句
@@ -80,7 +80,7 @@ class JiebaLibrary
 
     /**
      * 分词获取标签（拆分标签）
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-15 15:48:53
      * @param $content_raw string 处理语句
@@ -114,7 +114,7 @@ class JiebaLibrary
 
     /**
      * 分词并分解词性
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-10-15 16:38:52
      * @param $content_raw string 处理语句
@@ -155,7 +155,7 @@ class JiebaLibrary
 
     /**
      * 分词并分解词性获取权重排列数据
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-15 15:49:48
      * @param $content_raw string 处理语句
@@ -176,7 +176,7 @@ class JiebaLibrary
 
     /**
      * 获取字典词性解释
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-10-15 16:12:50
      * @return string[]

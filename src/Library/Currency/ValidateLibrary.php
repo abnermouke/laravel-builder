@@ -11,7 +11,7 @@ class ValidateLibrary
 {
     /**
      * 邮箱号码验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:38:38
      * @param $email string 邮箱号码
@@ -28,7 +28,7 @@ class ValidateLibrary
 
     /**
      * 有效链接地址验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:39:03
      * @param $link string 访问链接
@@ -45,7 +45,7 @@ class ValidateLibrary
 
     /**
      * 身份证号码（中国大陆）验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:39:30
      * @param $id_card string 身份证号码
@@ -62,7 +62,7 @@ class ValidateLibrary
 
     /**
      * 手机号码验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:40:01
      * @param $mobile string 手机号码
@@ -79,7 +79,7 @@ class ValidateLibrary
 
     /**
      * 只包含中文验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:40:25
      * @param $string string 验证文案
@@ -96,7 +96,7 @@ class ValidateLibrary
 
     /**
      * 包含中文验证
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:40:53
      * @param $string string 验证文案
@@ -113,7 +113,7 @@ class ValidateLibrary
 
     /**
      * 自定义验证（正则匹配）信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-09-02 00:41:15
      * @param $regular string 验证（正则匹配）规则

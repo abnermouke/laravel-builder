@@ -8,7 +8,7 @@
 if (!function_exists('getRandChar')) {
     /**
      * 获取随机字符串
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:22:45
      * @param int $length 获取长度
@@ -39,7 +39,7 @@ if (!function_exists('getRandChar')) {
 if (!function_exists('filter_emoji')) {
     /**
      * 过滤表情
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:22:54
      * @param $str string 过滤信息
@@ -58,7 +58,7 @@ if (!function_exists('filter_emoji')) {
 if (!function_exists('arraySequence')) {
     /**
      * 二维数组根据字段进行排序
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:25:05
      * @param $array array 二维数组信息
@@ -83,7 +83,7 @@ if (!function_exists('arraySequence')) {
 if (!function_exists('to_time')) {
     /**
      * 转换时间信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-06-18 23:28:03
      * @param $time mixed 是啊见信息
@@ -105,7 +105,7 @@ if (!function_exists('to_time')) {
 if (!function_exists('friendly_time')) {
     /**
      * 友好的时间提示
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-31 14:45:55
      * @param $time mixed 时间信息
@@ -221,7 +221,7 @@ if (!function_exists('friendly_time')) {
     if (!function_exists('friendly_number')) {
         /**
          * 友好的数值提示
-         * @Author Abnermouke <abnermouke@gmail.com>
+         * @Author Abnermouke <abnermouke@outlook.com>
          * @Originate in Company Yunnitec.
          * @Time 2020-08-06 10:21:12
          * @param $number int 数值
@@ -247,7 +247,7 @@ if (!function_exists('friendly_time')) {
 if (!function_exists('encodeURIComponent')) {
     /**
      * url特殊字符处理
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-06 11:36:28
      * @param $str string 处理字符串

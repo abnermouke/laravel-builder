@@ -21,7 +21,7 @@ class SensitiveFilterLibrary
 
     /**
      * 构造函数
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-16 02:44:04
      * @param $filter_file mixed 违禁词文件
@@ -35,7 +35,7 @@ class SensitiveFilterLibrary
 
     /**
      * 检测是否含有违禁词
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-16 02:37:26
      * @param $content_raw string 检测内容
@@ -53,7 +53,7 @@ class SensitiveFilterLibrary
 
     /**
      * 检测敏感词并将敏感词替换为指定文案
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-16 02:46:17
      * @param $content_raw string 检测内容
@@ -73,7 +73,7 @@ class SensitiveFilterLibrary
 
     /**
      * 将检测内容中的违禁词使用指定标签标记
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-16 02:48:51
      * @param $content_raw string 检测内容
@@ -93,7 +93,7 @@ class SensitiveFilterLibrary
 
     /**
      * 获取检测内容中的违禁词
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-10-16 02:51:09
      * @param $content_raw string 检测内容

@@ -43,7 +43,7 @@ class BaseService
 
     /**
      * Laravel builder base service set return a logic result strict
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-06 11:04:16
      * @param bool $pass
@@ -60,7 +60,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a logic result
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:54:47
      * @return array
@@ -74,7 +74,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a logic code
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:54:40
      * @return int
@@ -88,7 +88,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a logic message
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:54:25
      * @return string
@@ -102,7 +102,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a extra data
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:54:15
      * @return array
@@ -116,7 +116,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a logic state
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:53:58
      * @return bool
@@ -130,7 +130,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a success response
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:53:19
      * @param array $result Result data
@@ -154,7 +154,7 @@ class BaseService
 
     /**
      * Laravel builder base service return a failed response
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-07-15 15:51:16
      * @param int $code Logic code

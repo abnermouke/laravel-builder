@@ -22,7 +22,7 @@ class BaseSpider
 
     /**
      * 开始请求信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-31 12:09:49
      * @param $link string 请求链接
@@ -86,7 +86,7 @@ class BaseSpider
 
     /**
      * 初始化访问头信息
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company <Macbook Pro>
      * @Time 2020-09-24 14:13:30
      * @param false|array $headers 自定义头信息
@@ -118,7 +118,7 @@ class BaseSpider
 
     /**
      * 初始化请求链接
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-31 12:09:11
      * @param $link string 请求链接
@@ -147,7 +147,7 @@ class BaseSpider
 
     /**
      * 获取处理结果响应
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-31 11:59:06
      * @return mixed
@@ -161,7 +161,7 @@ class BaseSpider
 
     /**
      * 返回成功
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-31 22:45:28
      * @param $result array 返回结果集
@@ -181,7 +181,7 @@ class BaseSpider
 
     /**
      * 返回错误
-     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
      * @Time 2020-08-31 11:55:56
      * @param $error_code int 错误编码
