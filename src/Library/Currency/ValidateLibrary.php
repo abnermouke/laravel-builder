@@ -55,7 +55,7 @@ class ValidateLibrary
     public static function idCard($id_card)
     {
         //验证规则
-        $regular = '^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$';
+        $regular = '/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/';
         //返回验证结果
         return  self::validate($regular, $id_card);
     }

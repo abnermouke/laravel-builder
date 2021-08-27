@@ -33,6 +33,7 @@ class LaravelBuilderServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/builder.php' => config_path('builder.php'),
             __DIR__.'/../config/project.php' => config_path('project.php'),
+            __DIR__.'/../helpers/auth.php' => app_path('Helpers/auth.php'),
             __DIR__.'/../helpers/functions.php' => app_path('Helpers/functions.php'),
             __DIR__.'/../helpers/helpers.php' => app_path('Helpers/helpers.php'),
             __DIR__.'/../helpers/response.php' => app_path('Helpers/response.php'),

@@ -68,8 +68,8 @@ class PackageCommands extends Command
             '__DATE__' => date('Y-m-d'),
             '__TIME__' => date('H:i:s'),
             '__AUTHOR__' => data_get($config, 'author', 'Abnermouke'),
-            '__AUTHOR_CONTACT_EMAIL' => data_get($config, 'author_email', 'abnermouke@gmail.com'),
-            '__ORIGINATE__' => data_get($config, 'original', 'Yunni Technology Co Ltd.'),
+            '__AUTHOR_CONTACT_EMAIL' => data_get($config, 'author_email', 'abnermouke@outlook.com'),
+            '__ORIGINATE__' => data_get($config, 'original', 'Yunni Network Technology Co., Ltd. '),
 //            '__DB_PREFIX__' => data_get($config, 'database_prefix', ''),
             '__DB_CONNECTION__' => data_get($config, 'database_connection', 'mysql'),
             '__DATA_CACHE_DRIVER__' => data_get($config, 'cache_driver', 'file'),
@@ -126,7 +126,7 @@ class PackageCommands extends Command
         //询问是否生成数据缓存
         if ($this->confirm('是否生成数据缓存文件？', config('builder.default_builder.data_cache', true))) {
             //设置基础缓存名
-            $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache'));
+            $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache'));
             //设置缓存过期时间，随机1小时-一天
             $this->tplParams['__DATA_CACHE_EXPIRE_SECOND__'] = $this->ask('您可以自定义数据缓存过期时间（单位：s）,系统将默认设定为 1 小时至一天的随机时间过期，您也可以自定义，0 为永远不过期，请输入当前数据缓存的过期时间！', rand(3600, 86400));
             //生成数据缓存文件
@@ -223,7 +223,7 @@ class PackageCommands extends Command
             return true;
         }
         //初始化文件名
-        $migrationName = $matched[1];
+        $migrationName = trim($matched[1]);
         //询问获取数据库配置信息
         $this->tplParams['__CHARSET__'] = $this->choice('请选择当前数据库表使用的字符集！', ['utf8', 'utf8mb4'], $this->tplParams['__CHARSET__']);
         $this->tplParams['__ENGINE__'] = $this->choice('请输入当前数据库表使用的储存引擎！', ['myisam', 'innodb'], $this->tplParams['__ENGINE__']);
@@ -501,4 +501,5 @@ class PackageCommands extends Command
         //返回信息
         return implode('\\', $dictionaries);
     }
+
 }

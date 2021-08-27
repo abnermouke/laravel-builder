@@ -131,6 +131,41 @@ if (!function_exists('init_range_conditions')) {
     }
 }
 
+if (!function_exists('init_sort_rules')) {
+    /**
+     * 初始化查询排序规则
+     * @Author Abnermouke <abnermouke@gmail.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-10-29 21:01:58
+     * @param $sort_rules array 排序规则
+     * @param string $table_name 批量设置表名
+     * @return array
+     * @throws \Exception
+     */
+    function init_sort_rules($sort_rules, $table_name = false)
+    {
+        //判断信息
+        if (!$sort_rules || empty($sort_rules)) {
+            //返回空
+            return [];
+        }
+        //判断是否需要设置表名
+        if (!$table_name) return $sort_rules;
+        //循环排序规则
+        foreach ($sort_rules as $k => $rule) {
+            //判断是否已存在表名
+            if (!strstr($k, '.')) {
+                //设置表名
+                $sort_rules[$table_name.'.'.$k] = $rule;
+                //删除原数据
+                unset($sort_rules[$k]);
+            }
+        }
+        //返回排序规则
+        return $sort_rules;
+    }
+}
+
 if (!function_exists('create_qiniu_image_size')) {
     /**
      * 创建七牛图片大小参数信息
