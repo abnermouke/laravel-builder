@@ -72,7 +72,7 @@ class ValidateLibrary
     public static function mobile($mobile)
     {
         //验证规则
-        $regular = '/^1[34578]\d{9}$/';
+        $regular = '/^1[3456789]\d{9}$/';
         //返回验证结果
         return  self::validate($regular, $mobile);
     }
