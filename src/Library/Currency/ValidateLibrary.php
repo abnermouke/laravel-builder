@@ -44,6 +44,40 @@ class ValidateLibrary
     }
 
     /**
+     * 有效IP验证（IPV4）
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-09-02 00:39:03
+     * @param $ip string IP地址
+     * @return bool
+     * @throws \Exception
+     */
+    public static function ip($ip)
+    {
+        //验证规则
+        $regular = '/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/';
+        //返回验证结果
+        return  self::validate($regular, $ip);
+    }
+
+    /**
+     * 有效QQ号码验证
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-09-02 00:39:03
+     * @param $qq string QQ号码
+     * @return bool
+     * @throws \Exception
+     */
+    public static function qq($qq)
+    {
+        //验证规则
+        $regular = '/^[1-9][0-9]{4,}$/';
+        //返回验证结果
+        return  self::validate($regular, $qq);
+    }
+
+    /**
      * 身份证号码（中国大陆）验证
      * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
@@ -61,6 +95,23 @@ class ValidateLibrary
     }
 
     /**
+     * 银行卡号验证
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-09-02 00:39:30
+     * @param $bank_card string 银行卡号
+     * @return bool
+     * @throws \Exception
+     */
+    public static function bankCard($bank_card)
+    {
+        //验证规则
+        $regular = '/^(\d{16}|\d{19}|\d{17})$/';
+        //返回验证结果
+        return  self::validate($regular, $bank_card);
+    }
+
+    /**
      * 手机号码验证
      * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Company Yunnitec.
@@ -75,6 +126,23 @@ class ValidateLibrary
         $regular = '/^1[3456789]\d{9}$/';
         //返回验证结果
         return  self::validate($regular, $mobile);
+    }
+
+    /**
+     * 固定电话验证
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Company Yunnitec.
+     * @Time 2020-09-02 00:40:01
+     * @param $tel string 固定电话
+     * @return bool
+     * @throws \Exception
+     */
+    public static function tel($tel)
+    {
+        //验证规则
+        $regular = '/^([0-9]{3,4}-)?[0-9]{7,8}$/';
+        //返回验证结果
+        return  self::validate($regular, $tel);
     }
 
     /**

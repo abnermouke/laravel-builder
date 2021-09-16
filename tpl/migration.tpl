@@ -44,9 +44,9 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
 
             //TODO : 索引配置
         });
-        //添加表注释
+        //添加表自增长值
         (new {__LOWER_CASE_NAME__}Repository())->setIncrementId(1, {__CASE_NAME__}::DB_CONNECTION);
-        //修改表自增长值
+        //修改表注释
         (new {__LOWER_CASE_NAME__}Repository())->setTableComment('{__TABLE_NAME__}', {__CASE_NAME__}::DB_CONNECTION);
         //设置默认数据
         $this->defaultData();

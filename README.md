@@ -2,7 +2,11 @@
 
  Power By Abnermouke <abnermouke@outlook.com>
 
- 此工具包由Abnermouke <abnermouke@outlook.com>开发并维护。
+ 此工具包由 Abnermouke <abnermouke@outlook.com> 开发并维护。
+
+----
+
+最后更新时间：2021年09月16日，持续更新中！！！
 
 ---
 
@@ -96,6 +100,13 @@ composer require lustre/php-dfa-sensitive
 2020.10.17 - 新增数据库处理对JSON的支持
 
 2021.08.27 - 新增Session辅助函数，更改Builder构建逻辑，支持多目录结构构建，修复已知BUG（可无损更新）
+
+2021.09.16 - 修复已知BUG，重构builder组件，支持多层级目录（不限层级）并新增部分常用验证规则（Abnermouke\LaravelBuilder\Library\Currency\ValidateLibrary），新增RSA非对称加解密方法，仅需配置内部私钥与外部公钥即可自动进行RSA加解密（可无损更新）,请在使用前确保openssl可用：
+
+```shell
+composer require ext-openssl
+```
+
 
 更多精彩，敬请期待！
 

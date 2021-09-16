@@ -199,7 +199,7 @@ class PackageCommands extends Command
         //判断是否存在目录信息
         if ($this->tplParams['__DICTIONARY__'] && !empty($this->tplParams['__DICTIONARY__'])) {
             //整理迁移名称
-            $this->tplParams['__MIGRATION_NAME__'] = strtolower(Str::after($this->tplParams['__DICTIONARY__'], '\\')).'_'.$this->tplParams['__NAME__'];
+            $this->tplParams['__MIGRATION_NAME__'] = str_replace('\\', '___', strtolower(Str::after($this->tplParams['__DICTIONARY__'], '\\'))).'___'.$this->tplParams['__NAME__'];
             //判断信息
             $this->tplParams['__MIGRATION_NAME__'] = strstr($this->tplParams['__MIGRATION_NAME__'], '\\') ? Str::snake(str_replace('\\', '_', $this->tplParams['__MIGRATION_NAME__'])) : $this->tplParams['__MIGRATION_NAME__'];
             //设置迁移显示类名称
