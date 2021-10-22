@@ -84,7 +84,7 @@ class EncryptionLibrary
         //整理加密随机字符串
         $__nonce__ = Str::random(8);
         //整理签名
-        $__signature__ = md5($this->app_key.$__timestamp__.json_encode($content, JSON_NUMERIC_CHECK).$__nonce__.$this->app_secret);
+        $__signature__ = md5($this->app_key.$__timestamp__.json_encode($content, JSON_NUMERIC_CHECK|JSON_PRESERVE_ZERO_FRACTION).$__nonce__.$this->app_secret);
         //设置参数
         $content = array_merge($content, compact('__signature__', '__timestamp__', '__nonce__'));
         //整理加密字符串

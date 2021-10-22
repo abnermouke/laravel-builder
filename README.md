@@ -103,6 +103,8 @@ composer require lustre/php-dfa-sensitive
 
 2021.09.16 - 修复已知BUG，重构builder组件，支持多层级目录（不限层级）并新增部分常用验证规则（Abnermouke\LaravelBuilder\Library\Currency\ValidateLibrary），新增RSA非对称加解密方法，仅需配置内部私钥与外部公钥即可自动进行RSA加解密（可无损更新）,请在使用前确保openssl可用：
 
+2021.10.22 - 修复加解密浮点数/数字等加密结果有误问题，新增 JSON_NUMERIC_CHECK|JSON_PRESERVE_ZERO_FRACTION 两种flag处理
+
 ```shell
 composer require ext-openssl
 ```
