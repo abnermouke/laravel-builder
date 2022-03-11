@@ -141,7 +141,7 @@ composer require lustre/php-dfa-sensitive
 composer require ext-openssl
 ```
 
-2020.03.10 - 新增诸多功能
+2020.03.12 - 新增诸多功能
 
 - 新增 LaravelBuilder 基础中间件，记录请求开始时间，response时可携带执行时间已确认服务器处理速度，请在app/Http/Kernel.php中添加通用路由：
 
