@@ -233,11 +233,12 @@ if (!function_exists('string_to_text')){
      * @Author Abnermouke <abnermouke@outlook.com>
      * @Originate in Abnermouke's MBP
      * @Time 2022-03-11 12:51:12
-     * @param $string
-     * @param $num
+     * @param $string string 字符串
+     * @param $num int 指定长度
      * @return string|null
      */
-    function string_to_text($string,$num){
+    function string_to_text($string, $num = 0){
+        //判断字符串
         if($string){
             //把一些预定义的 HTML 实体转换为字符
             $html_string = htmlspecialchars_decode($string);
@@ -246,7 +247,7 @@ if (!function_exists('string_to_text')){
             //函数剥去字符串中的 HTML、XML 以及 PHP 的标签,获取纯文本内容
             $contents = strip_tags($content);
             //返回字符串中的前$num字符串长度的字符
-            return mb_strlen($contents,'utf-8') > $num ? mb_substr($contents, 0, $num, "utf-8").'....' : mb_substr($contents, 0, $num, "utf-8");
+            return (int)$num > 0 ? (mb_strlen($contents,'utf-8') > $num ? mb_substr($contents, 0, $num, "utf-8").'....' : mb_substr($contents, 0, $num, "utf-8")) : $content;
         }else{
             return $string;
         }

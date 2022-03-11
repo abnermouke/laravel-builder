@@ -88,14 +88,11 @@ protected $middleware = [
             "app/Helpers/functions.php",
             "app/Helpers/helpers.php",
             "app/Helpers/auth.php",
-            "app/Helpers/response.php"
+            "app/Helpers/response.php",
+            "app/Helpers/projects.php"
         ]
     },
 ```
-
-    
-    
-
 
 
 ### Usage - 使用
@@ -161,6 +158,7 @@ composer require ext-openssl
 - 新增更多实用辅助函数
 - 新增abort_error辅助函数，快速响应错误页面
 - 新增 Repository 公共方法 uniqueCode 可生成唯一类型编码（md5、string、number等）
+- 新增 SearchableTool 公共类，用于关键词检索，文本录入后将关键词与文本对象关联，可实现多对多高效检索（自动过滤违禁词），自带学习功能，根据项目需求自动调整和记录检索对象
 
 更多精彩，敬请期待！
 

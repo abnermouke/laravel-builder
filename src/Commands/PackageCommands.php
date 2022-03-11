@@ -20,14 +20,27 @@ class PackageCommands extends Command
      *
      * @var string
      */
-    protected $signature = 'builder:package {name}';
+    protected $signature = 'builder:package {name} {--desc=} {--dictionary=} {--dp=} {--dc=} {--dcs=} {--de=} {--cd=} {--migration} {--cache} {--controller} {--fcp}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Laravel builder power by Abnermouke';
+    protected $description = 'Laravel builder power by Abnermouke
+                              {name: 表名}
+                              {--desc: 表注释并以"表"字结尾，例如：用户信息表}
+                              {--dictionary: 目录名称，多层级请使用 \ 分割，例如：www (www\home，多目录使用分号包裹)}
+                              {--dp: 表前缀，例如：alb_}
+                              {--dc: 表链接信息，database.php中定义的表链接类，默认：mysql}
+                              {--dcs: 表字符集，默认：utf8mb4}
+                              {--de: 表引擎，默认：innodb}
+                              {--cd: 驱动引擎，默认：file}
+                              {--migration: 是否生成migration}
+                              {--cache: 是否生成cache缓存管理文件}
+                              {--controller: 是否生成controller控制器}
+                              {--fcp: 是否强制生成service、repository、model等}
+                            ';
 
     /**
      * 初始化模版参数
@@ -90,13 +103,13 @@ class PackageCommands extends Command
         //获取生成文件包统一名称
         $this->tplParams['__NAME__'] = $this->tplParams['__MIGRATION_NAME__'] = $name = $this->argument('name');
         //提示输入表名
-        $this->tplParams['__TABLE_NAME__'] = $tableName = $this->output->ask('请输入当前表注释名称并以"表"字结尾，例如：用户基本信息表');
+        $this->tplParams['__TABLE_NAME__'] = $tableName = $this->option('desc') ?? $this->output->ask('请输入当前表注释名称并以"表"字结尾，例如：用户基本信息表');
         //提示获取目录结构
-        $this->tplParams['__DICTIONARY__'] = $dictionary =  (string)$this->output->ask('多项目部署时如需对各服务文件进行分开部署请输入目录名称，多层级请使用 \ 分割，例如：www (www\home)');
+        $this->tplParams['__DICTIONARY__'] = $dictionary =  $this->option('dictionary') ?? (string)$this->output->ask('多项目部署时如需对各服务文件进行分开部署请输入目录名称，多层级请使用 \ 分割，例如：www (www\home)');
         //检测是否存在数据库表前缀
         if (empty($this->tplParams['__DB_PREFIX__'])) {
             //提示设置数据库前缀
-            $this->tplParams['__DB_PREFIX__'] = $dbPrefix = (string)$this->output->ask('请设置数据库表前缀，如数据库表存在统一前缀，请输入前缀，例如：'.config('builder.database_prefix', 'system_'), config('builder.database_prefix', ''));
+            $this->tplParams['__DB_PREFIX__'] = $this->option('dp') ?? $dbPrefix = (string)$this->output->ask('请设置数据库表前缀，如数据库表存在统一前缀，请输入前缀，例如：'.config('builder.database_prefix', 'system_'), config('builder.database_prefix', ''));
             //初始化数据库前缀信息
             !empty($dbPrefix) && $this->tplParams['__DB_PREFIX__'] = Str::finish($dbPrefix, '_');
         }
@@ -111,29 +124,29 @@ class PackageCommands extends Command
         //初始化数据名
         $this->tplParams['__DATA_NAME__'] = $dataName = intval($ret) >= 1 ? $matched[1] : $tableName;
         //询问获取数据库链接信息
-        $this->tplParams['__DB_CONNECTION__'] = $this->choice('请选择当前数据查询时使用的表链接信息！', array_keys(config('database.connections')), config('database.default'));
+        $this->tplParams['__DB_CONNECTION__'] = $this->option('dc') ?? $this->choice('请选择当前数据查询时使用的表链接信息！', array_keys(config('database.connections')), config('database.default'));
         //生成model
         $this->makeModel();
         //生成数据仓库
         $this->makeRepository();
         //询问是否生成迁移文件Migration
-        if ($this->confirm('是否生成数据迁移（Migration）文件？', config('builder.default_builder.migration', true))) {
+        if ($this->option('migration') || $this->confirm('是否生成数据迁移（Migration）文件？', config('builder.default_builder.migration', true))) {
             //生成migration
             $this->makeMigration();
         }
         //生成服务容器
         $this->makeService();
         //询问是否生成数据缓存
-        if ($this->confirm('是否生成数据缓存文件？', config('builder.default_builder.data_cache', true))) {
+        if ($this->option('cache') || $this->confirm('是否生成数据缓存文件？', config('builder.default_builder.data_cache', true))) {
             //设置基础缓存名
-            $this->tplParams['__DATA_CACHE_NAME__'] = $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache'));
+            $this->tplParams['__DATA_CACHE_NAME__'] = $this->option('cache') ? (($dictionary ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache') : $this->ask('您可以自定义当前数据缓存名，默认为：[ '. (($dictionary ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache').' ]，如需更改，请输入您要使用的缓存名！', (($dictionary && !empty($dictionary) ? strtolower(str_replace('\\', ':', $dictionary)).':' : '').$name.'_data_cache'));
             //设置缓存过期时间，随机1小时-一天
-            $this->tplParams['__DATA_CACHE_EXPIRE_SECOND__'] = $this->ask('您可以自定义数据缓存过期时间（单位：s）,系统将默认设定为 1 小时至一天的随机时间过期，您也可以自定义，0 为永远不过期，请输入当前数据缓存的过期时间！', rand(3600, 86400));
+            $this->tplParams['__DATA_CACHE_EXPIRE_SECOND__'] = $this->option('cache') ? 0 : $this->ask('您可以自定义数据缓存过期时间（单位：s）,系统将默认设定为 1 小时至一天的随机时间过期，您也可以自定义，0 为永远不过期，请输入当前数据缓存的过期时间！', rand(3600, 86400));
             //生成数据缓存文件
             $this->makeDataCache();
         }
         //询问是否生成控制器
-        if ($this->confirm('是否生成控制器文件？', config('builder.default_builder.controller', true))) {
+        if ($this->option('controller') || $this->confirm('是否生成控制器文件？', config('builder.default_builder.controller', true))) {
             //生成控制器文件
             $this->makeController();
         }
@@ -225,8 +238,8 @@ class PackageCommands extends Command
         //初始化文件名
         $migrationName = trim($matched[1]);
         //询问获取数据库配置信息
-        $this->tplParams['__CHARSET__'] = $this->choice('请选择当前数据库表使用的字符集！', ['utf8', 'utf8mb4'], $this->tplParams['__CHARSET__']);
-        $this->tplParams['__ENGINE__'] = $this->choice('请输入当前数据库表使用的储存引擎！', ['myisam', 'innodb'], $this->tplParams['__ENGINE__']);
+        $this->tplParams['__CHARSET__'] = $this->option('dcs') ?? $this->choice('请选择当前数据库表使用的字符集！', ['utf8', 'utf8mb4'], $this->tplParams['__CHARSET__']);
+        $this->tplParams['__ENGINE__'] = $this->option('de') ?? $this->choice('请输入当前数据库表使用的储存引擎！', ['myisam', 'innodb'], $this->tplParams['__ENGINE__']);
         //获取模版内容
         $content = $this->getTplContent('migration');
         //内容存在
@@ -277,7 +290,7 @@ class PackageCommands extends Command
         //整理路径
         $modelPath = app_path('Model'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']).'/'.$this->tplParams['__CASE_NAME__'].'.php');
         //判断文件地址
-        if (file_exists($modelPath) && !$this->confirm('数据模型 ['.$modelPath.'] 已存在，是否覆盖写入？')) {
+        if (file_exists($modelPath) && !$this->option('fcp') && !$this->confirm('数据模型 ['.$modelPath.'] 已存在，是否覆盖写入？')) {
             //直接返回
             return true;
         }
@@ -310,7 +323,7 @@ class PackageCommands extends Command
         //整理路径
         $servicePath = app_path('Services'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']).'/'.$this->tplParams['__LOWER_CASE_NAME__'].'Service.php');
         //判断文件地址
-        if (file_exists($servicePath) && !$this->confirm('服务容器 ['.$servicePath.'] 已存在，是否覆盖写入？')) {
+        if (file_exists($servicePath) && !$this->option('fcp') && !$this->confirm('服务容器 ['.$servicePath.'] 已存在，是否覆盖写入？')) {
             //直接返回
             return true;
         }
@@ -343,7 +356,7 @@ class PackageCommands extends Command
         //整理路径
         $controllerPath = app_path('Http/Controllers'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']).'/'.$this->tplParams['__LOWER_CASE_NAME__'].'Controller.php');
         //判断文件地址
-        if (file_exists($controllerPath) && !$this->confirm('控制器 ['.$controllerPath.'] 已存在，是否覆盖写入？')) {
+        if (file_exists($controllerPath) && !$this->option('fcp') && !$this->confirm('控制器 ['.$controllerPath.'] 已存在，是否覆盖写入？')) {
             //直接返回
             return true;
         }
@@ -367,7 +380,7 @@ class PackageCommands extends Command
     private function makeDataCache()
     {
         //询问获取缓存链接信息
-        $this->tplParams['__DATA_CACHE_DRIVER__'] = $this->choice('请选择当前数据缓存储存驱动！', array_keys(config('cache.stores')), config('cache.default'));
+        $this->tplParams['__DATA_CACHE_DRIVER__'] = $this->option('cd') ?? $this->choice('请选择当前数据缓存储存驱动！', array_keys(config('cache.stores')), config('cache.default'));
         //整理目录
         $dataCacheDirectory = app_path('Handler/Cache/Data'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']));
         //判断目录是否存在
@@ -378,7 +391,7 @@ class PackageCommands extends Command
         //整理路径
         $dataCachePath = app_path('Handler/Cache/Data'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']).'/'.$this->tplParams['__LOWER_CASE_NAME__'].'CacheHandler.php');
         //判断文件地址
-        if (file_exists($dataCachePath) && !$this->confirm('数据缓存 ['.$dataCachePath.'] 已存在，是否覆盖写入？')) {
+        if (file_exists($dataCachePath) && !$this->option('fcp') && !$this->confirm('数据缓存 ['.$dataCachePath.'] 已存在，是否覆盖写入？')) {
             //直接返回
             return true;
         }
@@ -411,7 +424,7 @@ class PackageCommands extends Command
         //整理路径
         $repositoryPath = app_path('Repository'.str_replace('\\', '/', $this->tplParams['__DICTIONARY__']).'/'.$this->tplParams['__LOWER_CASE_NAME__'].'Repository.php');
         //判断文件地址
-        if (file_exists($repositoryPath) && !$this->confirm('数据仓库 ['.$repositoryPath.'] 已存在，是否覆盖写入？')) {
+        if (file_exists($repositoryPath) && !$this->option('fcp') && !$this->confirm('数据仓库 ['.$repositoryPath.'] 已存在，是否覆盖写入？')) {
             //直接返回
             return true;
         }
