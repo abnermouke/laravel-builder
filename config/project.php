@@ -22,6 +22,19 @@ return [
 
     ],
 
+    //签名加密信息
+    'signature' => [
+        'app_key' => '__APP_KEY__',
+        'app_secret' => '__APP_SECRET__',
+    ],
+
+
+    //AES加密信息
+    'aes' => [
+        'iv' => '__AES_IV__',
+        'encrypt_key_suffix' => '__AES_ENCRYPT_KEY__'
+    ],
+
     // RSA 加密参数
     'rsa' => [
         //默认参数集合
@@ -39,7 +52,29 @@ return [
         ],
     ],
 
+    //高德地图Web服务API类型KEY
+    'amap_web_server_api_key' => env('AMAP_WEB_SERVER_API_KEY', ''),
 
-    //
+    //第三方账户信息
+    '3rd_passports' => [
+        //七牛云
+        'qiniu' => [
+            //默认配置
+            'default' => [
+                'domain' => env('QINIU_DEFAULT_DOMAIN', ''),                //七牛资源访问域名
+                'access_key' => env('QINIU_DEFAULT_ACCESS_KEY', ''),
+                'access_secret' => env('QINIU_DEFAULT_ACCESS_SECRET', ''),
+                'bucket' => env('QINIU_DEFAULT_BUCKET', ''),
+                'visibility' => env('QINIU_DEFAULT_DOMAIN', 'public'),       //公有云
+            ],
+        ],
+    ],
+
+    //项目其他配置
+    'others' => [
+
+        //配置项目其他通用配置（区分目录更为清晰）
+
+    ],
 
 ];

@@ -43,6 +43,7 @@ class Create{__MIGRATION_CASE_NAME_}Table extends Migration
             $table->timestamp('updated_at')->nullable()->comment('更新时间');
 
             //TODO : 索引配置
+
         });
         //添加表自增长值
         (new {__LOWER_CASE_NAME__}Repository())->setIncrementId(1, {__CASE_NAME__}::DB_CONNECTION);

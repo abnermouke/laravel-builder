@@ -5,6 +5,8 @@
  * Originate in YunniTec.
  */
 
+use Abnermouke\LaravelBuilder\Library\CodeLibrary;
+
 if (!function_exists('responseService')) {
     /**
      * 响应逻辑服务结果
@@ -100,20 +102,20 @@ if (!function_exists('responseReturn')) {
     function responseReturn($code, $msg, $data, $extra = [], $format = 'json', $callback = '')
     {
         //默认处理状态
-        $state = (int)$code === \Abnermouke\LaravelBuilder\Library\CodeLibrary::CODE_SUCCESS;
+        $state = (int)$code === CodeLibrary::CODE_SUCCESS;
         //整理基础返回数据
         $result = compact('state', 'code', 'msg', 'data');
         //判断额外的数据返回
-        if ($extra && !empty($extra) && is_array($extra)) {
+        if ($extra && is_array($extra)) {
             //整理返回数据
             $result = array_merge($result, $extra);
         }
         //添加基础数据
         $result['locale'] = config('app.locale');
         //获取逻辑请求记录时间
-        $logic_request_log_time = config('builder.logic_request_log_time', 0);
+        $logic_request_log_time = (int)request()->logic_request_log_time;
         //判断信息
-        if (($logic_request_log_time) > 0) {
+        if ((int)$logic_request_log_time > 0) {
             //设置基础数据
             $result['consuming'] = (((int)(microtime(true)*1000) - (int)$logic_request_log_time)).' ms';
         }

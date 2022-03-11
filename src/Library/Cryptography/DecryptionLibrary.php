@@ -106,14 +106,8 @@ class DecryptionLibrary
         }
         //整理信息
         $content = json_decode($decryptData, true);
-        //获取全部参数
-        $body = Arr::except($content, ['__signature__', '__timestamp__', '__nonce__']);
-        //倒序排序
-        krsort($body);
-        //获取签名
-        $body_signature = md5($this->app_key.data_get($content, '__timestamp__', 0).json_encode($body, JSON_NUMERIC_CHECK|JSON_PRESERVE_ZERO_FRACTION).data_get($content, '__nonce__', '').$this->app_secret);
-        //判断签名
-        if (trim($body_signature) !== trim(data_get($content, '__signature__', ''))) {
+        //验证签名
+        if (!$body = (new SignatureLibrary($this->app_key, $this->app_secret))->verify($content)) {
             //返回失败
             return false;
         }

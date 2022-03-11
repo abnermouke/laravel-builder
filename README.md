@@ -36,22 +36,22 @@ $ composer require "abnermouke/laravel-builder"
 
    （ 在`config/app.php`的`providers`注册服务提供者 ）
 
-  ```php
-  Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class
-  ```
+```php
+Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class
+```
 - If you want to manually load it only in non-production environments, instead you can add this to your `AppServiceProvider` with the `register()` method:
 
     （ 如果你想只在非`production`的模式中使用构建器功能，可在`AppServiceProvider`中进行`register()`配置 ）
 
-  ```php
-  public function register()
-  {
-      if ($this->app->environment() !== 'production') {
-          $this->app->register(\Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class);
-      }
-      // ...
+```php
+public function register()
+{
+  if ($this->app->environment() !== 'production') {
+      $this->app->register(\Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class);
   }
-  ```
+  // ...
+}
+```
 
 - This builder tool provides a config file to help you custom your build configs, you can generate files for your own.
 
@@ -60,6 +60,41 @@ $ composer require "abnermouke/laravel-builder"
     ```shell
     php artisan vendor:publish --provider="Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider"
     ```
+  
+- Add Middleware
+
+    添加通用中间件至  app/Http/Kernel.php (如需在指定路由使用中间件，请将内容填充至 $routeMiddleware 内，并标记标识):
+
+
+```php
+protected $middleware = [
+    
+    ///
+   
+    \App\Middleware\LaravelBuilderBaseMiddleware::class,
+];
+```
+
+- Add Autoload
+    
+    添加辅助函数自动加载至 composer.json
+
+```php
+     "autoload": {
+       
+       // 
+        
+        "files": [
+            "app/Helpers/functions.php",
+            "app/Helpers/helpers.php",
+            "app/Helpers/auth.php",
+            "app/Helpers/response.php"
+        ]
+    },
+```
+
+    
+    
 
 
 
@@ -109,6 +144,23 @@ composer require lustre/php-dfa-sensitive
 composer require ext-openssl
 ```
 
+2020.03.10 - 新增诸多功能
+
+- 新增 LaravelBuilder 基础中间件，记录请求开始时间，response时可携带执行时间已确认服务器处理速度，请在app/Http/Kernel.php中添加通用路由：
+
+```php
+    protected $middleware = [
+        
+        ///
+       
+        \App\Middleware\LaravelBuilderBaseMiddleware::class,
+    ];
+```
+- 新增 AesLibrary Aes加解密公共类，解析表单加密结果
+- 新增 SignatureLibrary 验签公共类，提供create（创建）、verify（验证）方法快捷生成/验证签名
+- 新增更多实用辅助函数
+- 新增abort_error辅助函数，快速响应错误页面
+- 新增 Repository 公共方法 uniqueCode 可生成唯一类型编码（md5、string、number等）
 
 更多精彩，敬请期待！
 

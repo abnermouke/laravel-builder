@@ -1097,4 +1097,49 @@ class BaseRepository
         //开始执行
         return $this->sqlStatement($sql, $connection);
     }
+
+    /**
+     * 生成唯一编码
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Abnermouke's MBP
+     * @Time 2022-03-11 15:35:27
+     * @param $field string 字段
+     * @param string $type 生成类型（md5、su <string upper>、sl <string lower>、number）
+     * @param int $length 生成长度 （md5固定为32位，其他有效）
+     * @return false|string
+     * @throws \Exception
+     */
+    public function uniqueCode($field, $type = 'string', $length = 8)
+    {
+        //根据类型生成对应编码
+        switch ($type) {
+            case 'md5':
+                //生成加密字符串
+                $code = md5(Uuid::uuid4()->toString().Str::random($length));
+                break;
+            case 'su':      //string upper
+                //生成加密字符串（大写）
+                $code = strtoupper(Str::random($length));
+                break;
+            case 'sl':      //string lower
+                //生成加密字符串（小写）
+                $code = strtoupper(Str::random($length));
+                break;
+            case 'number':
+                //生成加密数字
+                $code = getRandChar($length, true);
+                break;
+            default:
+                //生成加密字符串
+                $code = Str::random($length);
+                break;
+        }
+        //判断数据是否存在
+        if ($this->exists([$field => $code])) {
+            //重新生成
+            return $this->uniqueCode($field, $type, $length);
+        }
+        //返回编码
+        return $code;
+    }
 }

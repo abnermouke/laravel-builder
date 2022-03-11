@@ -16,22 +16,22 @@ return [
    |
    */
 
-    'database_prefix' => env('DB_PREFIX', ''),
-    'database_charset' => 'utf8mb4',
-    'database_engine' => 'innodb',
-    'database_connection' => 'mysql',
+    'database_prefix' => env('DB_PREFIX', ''),          // 默认数据库表前缀 (为方便辨识，请加上分隔符'_')
+    'database_charset' => 'utf8mb4',                                // Default database charset (proposal：utf8mb4)
+    'database_engine' => 'innodb',                                  // Default database engine (proposal：innodb)
+    'database_connection' => 'mysql',                               // 默认数据库链接 (默认：mysql < 如需指定链接，请前往 config/database.php 添加 >)
 
+    // 默认缓存驱动 (默认：file  < 可选：file， redis， mongodb等，redis、mongodb需单独安装/配置>)
     'cache_driver' => 'file',
 
-    'logic_request_log_time' => 0,
-
-    'app_version' => env('APP_VERSION', rand(10000, 99999)),
+    //默认应用（项目）版本号
+    'app_version' => env('APP_VERSION', '__APP_VERSION__'),
 
     // Default builder packages
     'default_builder' => [
-        'migration' => false,           //default build migration
+        'migration' => true,           //default build migration
         'data_cache' => true,           //default build data cache handler
-        'controller' => false,          //default build controller
+        'controller' => true,          //default build controller
     ],
 
 

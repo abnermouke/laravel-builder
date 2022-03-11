@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
+
 if (!function_exists('current_auth')) {
     /**
      * 获取当前session授权信息
@@ -11,10 +13,10 @@ if (!function_exists('current_auth')) {
      * @return array|bool|mixed
      * @throws \Exception
      */
-    function current_auth($item = false, $prefix = 'fudoudou:account')
+    function current_auth($item = false, $prefix = 'your-project-alias:account')
     {
         //获取session信息
-        if (!$auth = \Illuminate\Support\Facades\Session::get(auth_name($prefix), false)) {
+        if (!$auth = Session::get(auth_name($prefix), false)) {
             //返回失败
             return false;
         }
@@ -33,10 +35,10 @@ if (!function_exists('set_current_auth')) {
      * @param string $prefix
      * @throws Exception
      */
-    function set_current_auth($auth, $prefix = 'fudoudou:account')
+    function set_current_auth($auth, $prefix = 'your-project-alias:account')
     {
         //设置session信息
-        return \Illuminate\Support\Facades\Session::put(auth_name($prefix), $auth);
+        return Session::put(auth_name($prefix), $auth);
     }
 }
 
@@ -50,10 +52,10 @@ if (!function_exists('auth_name')) {
      * @return string
      * @throws \Exception
      */
-    function auth_name($prefix = 'fudoudou:account')
+    function auth_name($prefix = 'your-project-alias:account')
     {
         //获取session授权名称
-        return ($prefix && !empty($prefix) ? $prefix : 'fudoudou:account').'_auth_info';
+        return ($prefix && !empty($prefix) ? $prefix : 'your-project-alias:account').'_auth_info';
     }
 }
 
@@ -68,12 +70,12 @@ if (!function_exists('auth_remove')) {
      * @return bool
      * @throws \Exception
      */
-    function auth_remove($prefix = 'fudoudou:account', $clear_all = false)
+    function auth_remove($prefix = 'your-project-alias:account', $clear_all = false)
     {
         //删除当前缓存
-        \Illuminate\Support\Facades\Session::forget(auth_name($prefix));
+        Session::forget(auth_name($prefix));
         //判断是否删除全部
-        $clear_all && \Illuminate\Support\Facades\Session::flush();
+        Session::flush();
         //返回成功
         return true;
     }

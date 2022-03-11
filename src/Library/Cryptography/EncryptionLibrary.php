@@ -79,14 +79,8 @@ class EncryptionLibrary
         $content = !is_array($content) ? compact('content') : $content;
         //排序内容
         krsort($content);
-        //整理加密时间戳
-        $__timestamp__ = time();
-        //整理加密随机字符串
-        $__nonce__ = Str::random(8);
-        //整理签名
-        $__signature__ = md5($this->app_key.$__timestamp__.json_encode($content, JSON_NUMERIC_CHECK|JSON_PRESERVE_ZERO_FRACTION).$__nonce__.$this->app_secret);
         //设置参数
-        $content = array_merge($content, compact('__signature__', '__timestamp__', '__nonce__'));
+        $content = (new SignatureLibrary($this->app_key, $this->app_secret))->create($content);
         //整理加密字符串
         $signature_string = json_encode($content, JSON_NUMERIC_CHECK);
         //检测字符串字符集

@@ -32,7 +32,7 @@ if (!function_exists('getRandChar')) {
             return (int)($number[0]) === 0 ? getRandChar($length, $int) : $number;
         }
         //返回随机数
-        return \Illuminate\Support\Str::random((int)($length));
+        return Str::random((int)($length));
     }
 }
 
@@ -98,7 +98,7 @@ if (!function_exists('to_time')) {
             $time = strtotime($time);
         }
         //初始化时间信息
-        return (int)$time <= 0 ? ($default ? $default : time()) : (int)$time;
+        return (int)$time <= 0 ? ($default ?? time()) : (int)$time;
     }
 }
 
@@ -241,6 +241,106 @@ if (!function_exists('friendly_time')) {
             //返回数值
             return $number;
         }
+    }
+}
+
+if (!function_exists('friendly_heft')) {
+    /**
+     * 友好重量描述
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Abnermouke's MBP
+     * @Time 2022-03-11 14:20:29
+     * @param int $heft
+     * @return string
+     */
+    function friendly_heft($heft = 0) {
+        //判断是否大于吨
+        if ($heft >= 2000) {
+            //返回信息
+            return number_format($heft/2000, 2).'吨';
+        }
+        //返回重量
+        return $heft.'斤';
+    }
+}
+
+
+if (!function_exists('friendly_amount')) {
+    /**
+     * 初始化金额
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Abnermouke's MBP
+     * @Time 2021-04-01 17:47:18
+     * @param int $amount
+     * @return string
+     */
+    function friendly_amount($amount = 0)
+    {
+        //设置千
+        $thousand = 1000;
+        //设置万
+        $million = 10000;
+        //判断金额是否大于千
+        if ($amount > $thousand) {
+            //判断小于万
+            if ($amount < $million) {
+                //返回金额
+                return sprintf("%.1f", (floor(($amount/$thousand) * 10)/10)).' 千';
+            } else {
+                //返回金额
+                return sprintf('%.1f', (floor(($amount/$million)*10)/10)).' 万';
+            }
+        }
+        //返回金额
+        return number_format($amount, 2).' 元';
+    }
+}
+
+if (!function_exists('friendly_file_size')) {
+    /**
+     * 友好文件大小描述
+     * @Author Abnermouke <abnermouke@outlook.com>
+     * @Originate in Company <Macbook Pro>
+     * @Time 2020-09-05 16:38:05
+     * @param int $file_size 文件大小
+     * @return string
+     * @throws \Exception
+     */
+    function friendly_file_size($file_size = 0) {
+        //整理小数点位数
+        $decimal_step = 0;
+        //整理单位描述
+        $format = 'bytes';
+        //判断文件大小信息(KB级)
+        if ((int)$file_size >= 1024 && (int)$file_size < pow(1024, 2)) {
+            //重新整理信息
+            $decimal_step = 1;
+            $format = 'KB';
+            $file_size /= pow(1024, (int)$decimal_step);
+        }
+        //判断文件大小信息(MB级)
+        if ((int)$file_size >= pow(1024, 2) && (int)$file_size < pow(1024, 3)) {
+            //重新整理信息
+            $decimal_step = 2;
+            $format = 'MB';
+            $file_size /= pow(1024, (int)$decimal_step);
+        }
+        //判断文件大小信息(GB级)
+        if ((int)$file_size >= pow(1024, 3) && (int)$file_size < pow(1024, pow(1024, 4))) {
+            //重新整理信息
+            $decimal_step = 3;
+            $format = 'GB';
+            $file_size /= pow(1024, (int)$decimal_step);
+        }
+        //判断文件大小信息(TB级)
+        if ((int)$file_size >= pow(1024, 4) && (int)$file_size < pow(1024, 5)) {
+            //重新整理信息
+            $decimal_step = 3;
+            $format = 'TB';
+            $file_size /= pow(1024, (int)$decimal_step);
+        }
+        //返回大小信息
+        return number_format($file_size, (int)$decimal_step).' '.$format;
     }
 }
 
