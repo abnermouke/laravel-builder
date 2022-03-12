@@ -37,7 +37,7 @@ $ composer require "abnermouke/laravel-builder"
    （ 在`config/app.php`的`providers`注册服务提供者 ）
 
 ```php
-Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class
+Abnermouke\LaravelBuilder\EasyBuilderServiceProvider::class
 ```
 - If you want to manually load it only in non-production environments, instead you can add this to your `AppServiceProvider` with the `register()` method:
 
@@ -47,7 +47,7 @@ Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class
 public function register()
 {
   if ($this->app->environment() !== 'production') {
-      $this->app->register(\Abnermouke\LaravelBuilder\LaravelBuilderServiceProvider::class);
+      $this->app->register(\Abnermouke\LaravelBuilder\EasyBuilderServiceProvider::class);
   }
   // ...
 }
